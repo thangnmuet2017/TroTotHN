@@ -31,167 +31,37 @@
 
 	</style>
 
+	<!-- File lưu các biến dùng chung -->
+	<?php 
+		include('controller/generalVariable.php');
+	?>
+	
 </head>
 <body>
-	<!-- Hiển thị khung đăng nhập, đăng ký -->
-	<div id="login_background">
-		<div id="logIn_area" class="row">
-			<div class="col-xs-offset-1 col-xs-10 logIn_menu">
-				<button class="login logIn_menu_button">ĐĂNG NHẬP</button>
-				<button class="login signIn_menu_button">ĐĂNG KÝ</button>
-			</div>
+	<!-- Khung đăng ký, đăng nhập -->
+	<?php 
+		include('module/LogInAndSignIn.php');
+	?>
 
-			<div class="col-xs-1" style="padding: 0px;">
-				<img src="images/close_icon_16.png" class="pull-right close_login_icon">
-			</div>
+	<!-- Menu hiển thị ra khi scroll màn hình -->
+	<?php
+		include('module/menuScroll.php');
+	?>
 
-			<form action="TrangChu.php" method="POST" >
-				<div class="form-group col-xs-offset-1 col-xs-10">
-					<label for="logIn_email">Email:</label>
-					<input type="email" class="form-control" id="logIn_email" placeholder="Địa chỉ email" name="logIn_email">
-				</div>
-				<div class="form-group  col-xs-offset-1 col-xs-10">
-					<label for="logIn_password">Mật khẩu:</label>
-					<input type="password" class="form-control" id="logIn_password" placeholder="Mật khẩu" name="logIn_password">
-				</div>
-				<div class=" col-xs-offset-1 col-xs-10">
-					<span class="error_input" id="error_input_logIn"></span>
-				</div>
-				<div class="checkbox  col-xs-offset-1 col-xs-10">
-					<label><input type="checkbox" name="remember" style="width: 13px;"> Nhớ tài khoản</label>
-				</div>
-				<div class=" col-xs-offset-1 col-xs-10">
-					<button id="submit_logIn_button" type="submit" class="btn btn-success">Đăng nhập</button>
-				</div>
-			</form>
-		</div>
+	<!-- Header -->
+	<?php
+		include('module/header.php');
+	?>
 
-		<div id="signIn_area" class="row">
-			<div class="col-xs-offset-1 col-xs-10 logIn_menu">
-				<button class="login logIn_menu_button">ĐĂNG NHẬP</button>
-				<button class="login signIn_menu_button">ĐĂNG KÝ</button>
-			</div>
-
-			<div class="col-xs-1" style="padding: 0px;">
-				<img src="images/close_icon_16.png" class="pull-right close_login_icon">
-			</div>
-
-			<form action="TrangChu.php" method="POST" onsubmit="return validateSignInForm()">
-				<div class="form-group col-xs-offset-1 col-xs-10">
-					<label for="display_name">Tên hiển thị: </label> <span class="error_input" id="error_input_name_signIn"></span>
-					<input type="text" class="form-control" id="display_name" placeholder="Tên hiển thị" name="display_name">
-				</div>
-				<div class="form-group  col-xs-offset-1 col-xs-10">
-					<label for="signIn_email">Email:  </label> <span class="error_input" id="error_input_email_signIn"></span>
-					<input type="email" class="form-control" id="signIn_email" placeholder="Email" name="signIn_email">
-				</div>
-				<div class="form-group  col-xs-offset-1 col-xs-10">
-					<label for="signIn_password">Mật khẩu:</label><span class="error_input" id="error_input_password_signIn"></span>
-					<input type="password" class="form-control" id="signIn_password" placeholder="Mật khẩu" name="signIn_password">
-				</div>
-				<div class="form-group  col-xs-offset-1 col-xs-10">
-					<label for="signIn_password_again">Nhập lại mật khẩu:  </label><span class="error_input" id="error_input_password_again"></span>
-					<input type="password" class="form-control" id="signIn_password_again" placeholder="Nhập lại mật khẩu" name="signIn_password_again">
-				</div>
-				<div class=" col-xs-offset-1 col-xs-10">
-					<button id="submit_signIn_button" type="submit" class="btn btn-success">Đăng ký</button>
-				</div>
-			</form>
-		</div>
-	</div>
-
-	<!-- Phần menu hiển thị khi scroll màn hình-->
-	<nav class="navbar navbar-default navbar-inverse" role="navigation" id="menu_scroll" style="">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="TrangChu.php" style="padding: 9px 15px;"><img src="images/house-32.png"></a>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="PhongTro.php">
-						<b>PHÒNG TRỌ</b>
-					</a></li>
-					<li><a href="NhaNguyenCan.php">
-						<b>NHÀ NGUYÊN CĂN</b>
-					</a></li>
-					<li><a href="OGhep.php">
-						<b>Ở GHÉP</b>
-					</a></li>
-					<li><a href="DangTinNhanh.php">
-						<b>ĐĂNG TIN NHANH</b>
-					</a></li>
-
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</div>
-	</nav>
-
-	<!-- Phần header -->
-	<div class="container" id="header" style="">
-		<div class="pull-left">
-			<a href="TrangChu.php">
-				<img src="images/logo.png" alt="">
-			</a>
-		</div>
-		<div class="pull-right">
-			<img src="images/icon-acount.png" id="icon_acount" alt="">
-			<div style="padding-top: 5px; padding-right: 0px; float: right;">
-				<b class="logIn_signIn_button" id="logIn_button">Đăng nhập</b>
-				<br>
-				<p class="logIn_signIn_button" id="signIn_button">Đăng ký</p>
-			</div>
-		</div>
-	</div>
-
-	<!-- Phần menu -->
-	<nav class="navbar navbar-default navbar-inverse" role="navigation" id="menu" style="margin-bottom: 0px;">
-		<div class="container">
-			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-					<span class="sr-only">Toggle navigation</span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="TrangChu.php" style="padding: 9px 15px;"><img src="images/house-32.png"></a>
-			</div>
-
-			<!-- Collect the nav links, forms, and other content for toggling -->
-			<div class="collapse navbar-collapse navbar-ex1-collapse">
-				<ul class="nav navbar-nav">
-					<li><a href="PhongTro.php">
-						<b>PHÒNG TRỌ</b>
-					</a></li>
-					<li><a href="NhaNguyenCan.php">
-						<b>NHÀ NGUYÊN CĂN</b>
-					</a></li>
-					<li><a href="OGhep.php">
-						<b>Ở GHÉP</b>
-					</a></li>
-					<li><a href="DangTinNhanh.php">
-						<b>ĐĂNG TIN NHANH</b>
-					</a></li>
-
-				</ul>
-			</div><!-- /.navbar-collapse -->
-		</div>
-	</nav>
-
+	<!-- Menu chính -->
+	<?php
+		include('module/menu.php');
+	?>
 
 	<!-- Phần hiển thị đường dẫn các trang -->
 	<div class="container">
 		<p id="path">
-			<a href="TrangChu.php" class="link">Trang chủ / </a>
+			<a href="index.php" class="link">Trang chủ / </a>
 			<a href="DangTinNhanh.php" class="link">Đăng tin nhanh</a>
 		</p>
 	</div>
@@ -202,7 +72,7 @@
 			<!-- Phần nhập thông tin -->
 			<div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 				<div class="row">
-					<form method="GET" action="TrangChu.php" onsubmit="return validateForm()">
+					<form method="GET" action="index.php" onsubmit="return validateForm()">
 						<!-- Phần các thông tin cơ bản -->
 						<div class="col-xs-12">
 							<h3>Các thông tin cơ bản</h3>
@@ -448,23 +318,10 @@
 		</div>
 	</div>
 
-	<div class="container-fluid" style="background-color: #2e3339;">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-7">
-					<h3 style="color: #33cc66;">Thông tin liên hệ</h3>
-					<p style="color: white;">Điện thoại: 0123456789
-						<br>Email: trototHN@gmail.com
-						<br>Nhóm 24 - INT2208-8(UET)
-					</p>
-				</div>
-				<div class="col-sm-5">
-					<h3 style="color: #33cc66;">Giới thiệu</h3>
-					<p style="color: white;">Trang web đăng tin chia sẻ miễn phí thông tin về phòng trọ, nhà riêng khu vực Hà Nội nhằm giúp người thuê phòng và người cho thuê phòng tương tác với nhau không qua trung gian môi giới.</p>
-				</div>
-			</div>
-		</div>
-	</div>
+	<!-- Phần chân trang -->
+	<?php
+		include('module/footer.php');
+	?>
 
 	<!-- Nhúng file javascript -->
 	
