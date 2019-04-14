@@ -15,13 +15,13 @@
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<li><a href="PhongTro.php">
+					<li><a href="./LoaiPhong.php?action=Phòng+trọ">
 						<b>PHÒNG TRỌ</b>
 					</a></li>
-					<li><a href="NhaNguyenCan.php">
+					<li><a href="./LoaiPhong.php?action=Nhà+nguyên+căn">
 						<b>NHÀ NGUYÊN CĂN</b>
 					</a></li>
-					<li><a href="OGhep.php">
+					<li><a href="./LoaiPhong.php?action=Ở+ghép">
 						<b>Ở GHÉP</b>
 					</a></li>
 					<li><a href="DangTinNhanh.php">

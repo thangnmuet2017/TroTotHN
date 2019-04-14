@@ -22,13 +22,13 @@
 			&& KieuVeSinhChecked == false) {
 			return false;
 		}
-}
+	}
 </script>
 
 <!-- Phần filter tìm kiếm -->
 			<div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
 				<h2 class="text-center" style="color: green; border-bottom: green solid 1px; padding-bottom: 7px; margin-top: 15px;">Bộ lọc tìm kiếm</h2>
-				<form action="./KetQuaTimKiem.php" method="GET" onsubmit="return validateSearchingForm()">
+				<form action="KetQuaTimKiem.php" method="GET" onsubmit="return validateSearchingForm()">
 					<div class="col-xs-12">
 					<h3 style="color: #33cc66">Chọn khu vực</h3>
 					<select class="filter_option select_tags" id="district_select" onchange="setUpXaPhuongFilter(this)">

@@ -1,17 +1,19 @@
-
 <?php
     if(!isset($_SESSION)) 
     { 
-        session_start(); 
+        session_start();
+        
     }
+    $_SESSION['user_name'] = '';
 ?>
+
 
 <!-- Sử dụng AJAX để gửi dữ liệu lên server kiểm tra việc đăng nhập -->
 <script>
 function logInAction() {
-	var email = document.getElementById("logIn_email").value;
+	var user_name = document.getElementById("logIn_user_name").value;
 	var password = document.getElementById("logIn_password").value;
-    if (email == "" && password == "") {
+    if (user_name == "" && password == "") {
         document.getElementById("error_input_logIn").innerHTML = "Bạn chưa nhập tài khoản, mật khẩu!";
         return;
     } else { 
@@ -27,7 +29,7 @@ function logInAction() {
                 document.getElementById("error_input_logIn").innerHTML = this.responseText;
             }
         };
-        xmlhttp.open("GET","./controller/logIn.php?e="+email+"&p="+password,true);
+        xmlhttp.open("GET","./controller/logIn.php?n="+user_name+"&p="+password,true);
         xmlhttp.send();
     }
 }
@@ -48,15 +50,15 @@ function logInAction() {
 
 		<form action="" method="POST" onsubmit=" return false">
 			<div class="form-group col-xs-offset-1 col-xs-10">
-				<label for="logIn_email">Email:</label>
-				<input type="email" class="form-control" id="logIn_email" placeholder="Địa chỉ email" name="logIn_email">
+				<label for="logIn_user_name">Tài khoản:</label>
+				<input type="text" class="form-control" id="logIn_user_name" placeholder="Tài khoản" name="logIn_user_name">
 			</div>
 			<div class="form-group  col-xs-offset-1 col-xs-10">
 				<label for="logIn_password">Mật khẩu:</label>
 				<input type="password" class="form-control" id="logIn_password" placeholder="Mật khẩu" name="logIn_password">
 			</div>
 			<div class=" col-xs-offset-1 col-xs-10">
-				<span class="error_input" id="error_input_logIn"></span>
+				<span class="error_input" id="error_input_logIn"> <?php if(isset($_SESSION['user_name'])) {echo 'Session: ' .$_SESSION['user_name'];} ?></span>
 			</div>
 			<div class="checkbox  col-xs-offset-1 col-xs-10">
 				<label><input type="checkbox" name="remember" style="width: 13px;"> Nhớ tài khoản</label>
@@ -79,7 +81,7 @@ function logInAction() {
 
 		<form action="" method="POST" onsubmit="return validateSignInForm()">
 			<div class="form-group col-xs-offset-1 col-xs-10">
-				<label for="display_name">Tên hiển thị: </label> <span class="error_input" id="error_input_name_signIn"></span>
+				<label for="display_name">Tên tài khoản: </label> <span class="error_input" id="error_input_name_signIn"></span>
 				<span class="error_input">
 					<!-- <?php
 						if($user_name_singIn_existed == true) {
@@ -91,10 +93,6 @@ function logInAction() {
 						//echo $error_user_name;
 					?></span> -->
 				<input type="text" class="form-control" id="display_name" placeholder="Tên hiển thị" name="display_name">
-			</div>
-			<div class="form-group  col-xs-offset-1 col-xs-10">
-				<label for="signIn_email">Email:  </label> <span class="error_input" id="error_input_email_signIn"></span>
-				<input type="email" class="form-control" id="signIn_email" placeholder="Email" name="signIn_email">
 			</div>
 			<div class="form-group  col-xs-offset-1 col-xs-10">
 				<label for="signIn_password">Mật khẩu:</label><span class="error_input" id="error_input_password_signIn"></span>

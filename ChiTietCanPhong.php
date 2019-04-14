@@ -2,12 +2,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title id="title_room_page">Chi tiết căn phòng</title>
+	<title id="title_room_page"><?php
+		include('controller/connectToDatabase.php');
+		$room_id = $_GET['id'];
+		$sql_select_room_title = 'SELECT TieuDe FROM gia_phong_tro WHERE IDPhongTro=' .$room_id;
+		if($result_title = mysqli_query($conn, $sql_select_room_title)) {
+			while ($row_title = mysqli_fetch_assoc($result_title)) {
+				echo $row_title['TieuDe'];
+			}
+		}
+	?></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<script type="text/javascript" src="vendor/bootstrap.js"></script>
+	<!-- <script type="text/javascript" src="vendor/bootstrap.js"></script>
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
-	<link rel="stylesheet" href="vendor/bootstrap.css">
+	<link rel="stylesheet" href="vendor/bootstrap.css"> -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="styles/CSS.css">
 	<style type="text/css">
 		.room_info {
@@ -18,13 +30,11 @@
 		.room_content {
 			background-color: #f8f8f8;
 		}
+		.item > img { 
+			margin: 0 auto; 
+		}
 
 	</style>
-
-	<!-- File lưu các biến dùng chung -->
-	<?php 
-		include('controller/generalVariable.php');
-	?>
 
 </head>
 <body>
