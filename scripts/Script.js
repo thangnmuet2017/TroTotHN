@@ -415,22 +415,16 @@ $("#submit_signIn_button").click( function() {
 		$("#error_input_password_again").text("");
 	}
 	if(document.getElementById("display_name").value == "") {
-		$("#error_input_name_signIn").text(" Bạn chưa nhập tên hiển thị!");
+		$("#error_input_name_signIn").text(" Bạn chưa nhập tên tài khoản!");
 	} else {
 		$("#error_input_name_signIn").text("");
-	} 
-	if(document.getElementById("signIn_email").value == "") {
-		$("#error_input_email_signIn").text(" Bạn chưa nhập email!");
-	} else {
-		$("#error_input_email_signIn").text("");
-	} 
+	}
 });
 
 function validateSignInForm() {
 	if (document.getElementById("signIn_password").value == ""
 		|| document.getElementById("signIn_password").value != document.getElementById("signIn_password_again").value
-		|| document.getElementById("display_name").value == ""
-		|| document.getElementById("signIn_email").value == "") {
+		|| document.getElementById("display_name").value == "") {
 		return false;
 	}
 }

@@ -1,4 +1,6 @@
-
+<?php
+    session_start();
+?>
 
 <!-- Nhận dữ liệu gửi lên server thông qua AJAX trong file DangKyDangNhap.php và xử lý đăng nhập -->
 <?php
@@ -19,14 +21,12 @@
 		} else {
 			echo "Đăng nhập thành công!";
 			$_SESSION['user_name'] = $user_name;
+			echo $_SESSION['user_name'];
 
 		}
 	} else {
 		echo "Lỗi kết nối!";
 		echo "Error: <br>" . mysqli_error($conn);
 	}
-	if(isset($_SESSION['user_name'])) {
-				echo $_SESSION['user_name'];
-			}
 	mysqli_close($conn);
 ?>

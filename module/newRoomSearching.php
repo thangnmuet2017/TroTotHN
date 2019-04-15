@@ -1,11 +1,36 @@
-<?php 
-	$action = $_GET['action'];
+<?php
 
 	//kết nối đến CSDL
 	include('./controller/connectToDatabase.php');
 
-	//Câu lệnh sql lấy tất cả các phòng thỏa mãn điều kiện của action
-	$sql_select_all_action = 'SELECT gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS diff, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro AND gia_phong_tro.KieuPhong="' .$action. '" ORDER BY gia_phong_tro.ThoiGianDang DESC';
+	//Câu lệnh sql lấy tất cả các phòng thỏa mãn điều kiện của bộ lọc
+	$sql_select_all_action = 'SELECT gia_phong_tro.IDPhongTro, gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS ThoiGian, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro';
+	if(isset($_GET['kieuPhong'])) {
+		if($_GET['kieuPhong'] != "Tất cả") {
+			$sql_select_all_action = $sql_select_all_action.' AND gia_phong_tro.KieuPhong="' .$_GET['kieuPhong']. '"';
+		}
+	}
+	if(isset($_GET['kieuVeSinh'])) {
+		if($_GET['kieuVeSinh'] != "Tất cả") {
+			$sql_select_all_action = $sql_select_all_action.' AND gia_phong_tro.KieuVeSinh="' .$_GET['kieuVeSinh']. '"';
+		}
+	}
+	if(isset($_GET['quanHuyen'])) {
+		if($_GET['quanHuyen']!="") {
+			$sql_select_all_action = $sql_select_all_action.' AND dia_chi_phong_tro.QuanHuyen="' .$_GET['quanHuyen']. '"';
+		}
+	}
+	if(isset($_GET['xaPhuong'])) {
+		if($_GET['xaPhuong']!="") {
+			$sql_select_all_action = $sql_select_all_action.' AND dia_chi_phong_tro.XaPhuong="' .$_GET['xaPhuong']. '"';
+		}
+	}
+	if(isset($_GET['price_from']) && isset($_GET['price_to'])) {
+		if($_GET['price_from']!="0" || $_GET['price_to']!="5000000") {
+			$sql_select_all_action = $sql_select_all_action.' AND gia_phong_tro.GiaChoThue BETWEEN ' .$_GET['price_from']. ' AND ' .$_GET['price_to'];
+		}
+	}
+
 	$row_of_results = 0;
 	if($result_all = mysqli_query($conn, $sql_select_all_action)) {
 		$row_of_results = mysqli_num_rows($result_all); //Số lượng căn phòng đã đăng
@@ -26,7 +51,7 @@
 	//Kết quả đầu tiên trả về của trang
 	$this_page_first_result = ($page-1)*$result_per_page;
 
-	$sql_select_each_page = 'SELECT gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS diff, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro AND gia_phong_tro.KieuPhong="' .$action. '" ORDER BY gia_phong_tro.ThoiGianDang DESC LIMIT ' .$this_page_first_result. ',' .$result_per_page;
+	$sql_select_each_page = $sql_select_all_action. ' LIMIT ' .$this_page_first_result. ',' .$result_per_page;
 	$result_each_page = mysqli_query($conn, $sql_select_each_page);
 
 	//Hiển thị các phòng tương ứng
@@ -68,7 +93,7 @@
 							<span style="color: green;">Giá: </span>
 							<span><?php echo $row['GiaChoThue']; ?> đồng/tháng</span>
 						</b>
-						<p class="col-xs-12 text-right simple_room_info_line" style="color: gray">1 ngày trước</p>
+						<p class="col-xs-12 text-right simple_room_info_line" style="color: gray"><?php echo $row['ThoiGian']; ?> ngày trước</p>
 					</div>
 				</div>
 			</div>
@@ -76,15 +101,34 @@
 		<?php
 	}
 	//Phần pagination hiển thị số lượng trang
+	$path = ''; //các điều kiện bộ lọc trên url
+	if(isset($_GET['kieuPhong'])) {
+		$path = $path. '&kieuPhong=' . $_GET['kieuPhong'];
+	}
+	if(isset($_GET['kieuVeSinh'])) {
+		$path = $path. '&kieuVeSinh=' . $_GET['kieuVeSinh'];
+	}
+	if(isset($_GET['quanHuyen'])) {
+		$path = $path. '&quanHuyen=' . $_GET['quanHuyen'];
+	}
+	if(isset($_GET['xaPhuong'])) {
+		$path = $path. '&xaPhuong=' . $_GET['xaPhuong'];
+	}
+	if(isset($_GET['price_from'])) {
+		$path = $path. '&price_from=' . $_GET['price_from'];
+	}
+	if(isset($_GET['price_to'])) {
+		$path = $path. '&price_to=' . $_GET['price_to'];
+	}
 	$pre_page = $page;//kiểm tra xem nút previous có thể click được không, nếu click được thì chuyển trang
 
 	$next_page = $page; //kiểm tra xem nút next có thể click được k nếu click được thì chuyển trang
 
 	echo '<div class="col-xs-12">
-	<ul class="pagination pull-right">';
+		<ul class="pagination pull-right">';
 	if($page>1) {
 		$pre_page = $page - 1;
-		echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="LoaiPhong.php?action=' .$action. '&page=' .$pre_page. '"><</a></li>';
+		echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="KetQuaTimKiem.php?page=' .$pre_page.$path. '"><</a></li>';
 	} else {
 		echo '<li class="disabled"> <span><</span> </li>';
 	}
@@ -93,17 +137,17 @@
 		if($pos_page == $page) {
 			echo '<li class="active"><span>' .$pos_page. '</span></li>';
 		} else {
-			echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="LoaiPhong.php?action=' .$action. '&page=' .$pos_page. '">' .$pos_page. '</a></li>';
+			echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="KetQuaTimKiem.php?page=' .$pos_page.$path. '">' .$pos_page. '</a></li>';
 		}
 
 	}
 
 	if($page<$number_of_pages) {
 		$next_page = $page + 1;
-		echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="LoaiPhong.php?action=' .$action. '&page=' .$next_page. '">></a></li>';
+		echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="KetQuaTimKiem.php?page=' .$next_page.$path. '">></a></li>';
 	} else {
 		echo '<li class="disabled"> <span>></span> </li>';
 	}
 	echo '</ul>
-	</div>';
+		</div>';
 ?>

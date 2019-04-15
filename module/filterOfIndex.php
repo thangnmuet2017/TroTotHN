@@ -1,7 +1,7 @@
 
 <script type="text/javascript">
 	function validateSearchingForm() {
-		var checkboxKieuPhong = document.getElementsByName("KieuPhong");
+		var checkboxKieuPhong = document.getElementsByName("kieuPhong");
 		var KieuPhongChecked = false;
 		for (var i = 0; i < checkboxKieuPhong.length; i++){
 			if (checkboxKieuPhong[i].checked === true){
@@ -26,7 +26,7 @@
 			<form action="./KetQuaTimKiem.php" method="GET" onsubmit="return validateSearchingForm()">
 				<div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
 					<h3 style="color: #33cc66">Chọn khu vực</h3>
-					<select class="filter_option select_tags" onchange="setUpXaPhuongFilter(this)" id="district_select">
+					<select class="filter_option select_tags" name="quanHuyen" onchange="setUpXaPhuongFilter(this)" id="district_select">
 						<option value="">Chọn quận, huyện</option>
 						<option value="Quận Ba Đình">Quận Ba Đình</option>
 						<option value="Huyện Ba Vì">Huyện Ba Vì</option>
@@ -59,7 +59,7 @@
 						<option value="Huyện Thường Tín">Huyện Thường Tín</option>
 						<option value="Huyện Ứng Hòa">Huyện Ứng Hòa</option>
 					</select>
-					<select class="filter_option select_tags" id="xaPhuongSelect">
+					<select class="filter_option select_tags" id="xaPhuongSelect" name="xaPhuong">
 						<option class="select_filter" value="">Chọn xã, phường</option>
 						
 					</select>
@@ -67,24 +67,24 @@
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 					<h3 style="color: #33cc66">Chọn loại phòng</h3>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="color: white; padding: 5px 0px;">
-						<input name="KieuPhong" type="radio" value="Phòng trọ" /> Phòng trọ
+						<input name="kieuPhong" type="radio" value="Phòng trọ" /> Phòng trọ
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="color: white; padding: 5px 0px;">
-						<input name="KieuPhong" type="radio" value="Nhà nguyên căn" /> Nhà nguyên căn
+						<input name="kieuPhong" type="radio" value="Nhà nguyên căn" /> Nhà nguyên căn
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="color: white; padding: 5px 0px;">
-						<input  name="KieuPhong" type="radio" value="Ở ghép"> Ở ghép
+						<input  name="kieuPhong" type="radio" value="Ở ghép"> Ở ghép
 					</div>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="color: white; padding: 5px 0px;">
-						<input  name="KieuPhong" type="radio" value="Tất cả"> Tất cả
+						<input  name="kieuPhong" type="radio" value="Tất cả"> Tất cả
 					</div>
 				</div>
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 					<h3 style="color: #33cc66">Chọn khoảng giá</h3>
 					<div class="row col-lg-12" style="margin: 0px; padding: 0px;">
-						<input class="col-lg-4 col-md-4 col-sm-4 col-xs-4 price_filter" type="number" min="0" value="0" id="price_from">
+						<input class="col-lg-4 col-md-4 col-sm-4 col-xs-4 price_filter" type="number" min="0" value="0" id="price_from" name="price_from">
 						<p class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center" style="color: white;">Đến</p>
-						<input class="col-lg-4 col-md-4 col-sm-4 col-xs-4 price_filter" type="number" min="0" value="5000000" id="price_to">
+						<input class="col-lg-4 col-md-4 col-sm-4 col-xs-4 price_filter" type="number" min="0" value="5000000" id="price_to" name="price_to">
 					</div>
 				</div>
 				<div class="col-xs-12 filter_option" style="width: 100%; text-align: center;">

@@ -40,7 +40,7 @@
 					</a>
 				</div>
 				<div class="row" style="color: #33cc66;">
-					<div class="col-lg-6"><?php echo $row['QuanHuyen']; ?></div>
+					<div class="col-lg-6"><?php echo str_replace(['Quận ', 'Huyện '], '', $row['QuanHuyen']); ?></div>
 					<div class="col-lg-6 text-right"><?php echo $row['GiaChoThue']; ?> đ</div>
 				</div>
 			</div>

@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +15,13 @@
 
 </head>
 <body>
+	<?php
+		if(isset($_SESSION['user_name'])) {
+			echo $_SESSION['user_name'];
+		} else {
+			echo "NULL";
+		}
+ 	?>
 	<!-- Khung đăng ký, đăng nhập -->
 	<?php 
 		include('module/LogInAndSignIn.php');

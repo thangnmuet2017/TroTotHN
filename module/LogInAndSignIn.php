@@ -1,12 +1,3 @@
-<?php
-    if(!isset($_SESSION)) 
-    { 
-        session_start();
-        
-    }
-    $_SESSION['user_name'] = '';
-?>
-
 
 <!-- Sử dụng AJAX để gửi dữ liệu lên server kiểm tra việc đăng nhập -->
 <script>
@@ -48,7 +39,7 @@ function logInAction() {
 			<img src="images/close_icon_16.png" class="pull-right close_login_icon">
 		</div>
 
-		<form action="" method="POST" onsubmit=" return false">
+		<form action="index.php" method="POST" onsubmit=" return false">
 			<div class="form-group col-xs-offset-1 col-xs-10">
 				<label for="logIn_user_name">Tài khoản:</label>
 				<input type="text" class="form-control" id="logIn_user_name" placeholder="Tài khoản" name="logIn_user_name">
@@ -58,7 +49,7 @@ function logInAction() {
 				<input type="password" class="form-control" id="logIn_password" placeholder="Mật khẩu" name="logIn_password">
 			</div>
 			<div class=" col-xs-offset-1 col-xs-10">
-				<span class="error_input" id="error_input_logIn"> <?php if(isset($_SESSION['user_name'])) {echo 'Session: ' .$_SESSION['user_name'];} ?></span>
+				<span class="error_input" id="error_input_logIn"></span>
 			</div>
 			<div class="checkbox  col-xs-offset-1 col-xs-10">
 				<label><input type="checkbox" name="remember" style="width: 13px;"> Nhớ tài khoản</label>
@@ -83,15 +74,6 @@ function logInAction() {
 			<div class="form-group col-xs-offset-1 col-xs-10">
 				<label for="display_name">Tên tài khoản: </label> <span class="error_input" id="error_input_name_signIn"></span>
 				<span class="error_input">
-					<!-- <?php
-						if($user_name_singIn_existed == true) {
-							echo "Tên đã tồn tại, vui lòng nhập tên khác!";
-							$user_name_singIn_existed = false;
-						} else {
-							echo "";
-						}
-						//echo $error_user_name;
-					?></span> -->
 				<input type="text" class="form-control" id="display_name" placeholder="Tên hiển thị" name="display_name">
 			</div>
 			<div class="form-group  col-xs-offset-1 col-xs-10">

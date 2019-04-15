@@ -1,3 +1,11 @@
+<?php
+    session_start();
+?>
+
+<?php 
+	include('controller/logOut.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,9 +19,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="styles/CSS.css">
-
 </head>
 <body>
+	<?php
+		if(isset($_SESSION['user_name'])) {
+			echo $_SESSION['user_name'];
+		} else {
+			echo "NULL";
+		}
+ 	?>
 	<!-- Khung đăng ký, đăng nhập -->
 	<?php 
 		include('module/LogInAndSignIn.php');
