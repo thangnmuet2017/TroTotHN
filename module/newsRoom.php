@@ -26,7 +26,7 @@
 	//Kết quả đầu tiên trả về của trang
 	$this_page_first_result = ($page-1)*$result_per_page;
 
-	$sql_select_each_page = 'SELECT gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS diff, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro AND gia_phong_tro.KieuPhong="' .$action. '" ORDER BY gia_phong_tro.ThoiGianDang DESC LIMIT ' .$this_page_first_result. ',' .$result_per_page;
+	$sql_select_each_page = 'SELECT gia_phong_tro.IDPhongTro, gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS diff, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro AND gia_phong_tro.KieuPhong="' .$action. '" ORDER BY gia_phong_tro.ThoiGianDang DESC LIMIT ' .$this_page_first_result. ',' .$result_per_page;
 	$result_each_page = mysqli_query($conn, $sql_select_each_page);
 
 	//Hiển thị các phòng tương ứng
@@ -106,4 +106,5 @@
 	}
 	echo '</ul>
 	</div>';
+
 ?>

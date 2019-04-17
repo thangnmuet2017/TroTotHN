@@ -383,6 +383,45 @@ $(".close_login_icon").click( function() {
 	$("#login_background").css("display", "none");
 });
 
+//Hàm kiểm tra các lỗi trong khi đăng ký tài khoản và cài đặt thuộc tính onsubmit
+function validateSignInForm() {
+	var user_name_signIn = $("#display_name").val();
+	var password_signIn = $("#signIn_password").val();
+	var password_again = $("#signIn_password_again").val();
+	if(user_name_signIn == "" && password_signIn == "") {
+		$("#error_input_signIn").text("Bạn chưa nhập tài khoản, mật khẩu!");
+		return false;
+	} else if(user_name_signIn != "" && password_signIn == "") {
+		$("#error_input_signIn").text("Bạn chưa nhập mật khẩu!");
+		return false;
+	} else if(user_name_signIn == "" && password_signIn != "") {
+		$("#error_input_signIn").text("Bạn chưa nhập tên tài khoản!");
+		return false;
+	}  else if(password_signIn != password_again) {
+		$("#error_input_signIn").text("Nhập lại mật khẩu sai!");
+		return false;
+	} else {
+		$("#error_input_signIn").text("");
+	}
+}
+//Hàm kiểm tra các lỗi trong khi đăng nhập và cài đặt thuộc tính onsubmit
+function ValidateLogIn() {
+	var user_name = $("#logIn_user_name").val();
+	var password = $("#logIn_password").val();
+    if (user_name == "" && password == "") {
+        $("#error_input_logIn").text("Bạn chưa nhập tài khoản, mật khẩu!");
+        return false;
+    } else if(user_name == "" && password != "") { 
+    	$("#error_input_logIn").text("Bạn chưa nhập tên tài khoản!");
+    	return false;
+    } else if(password == "" && user_name != "") {
+    	$("#error_input_logIn").text("Bạn chưa nhập mật khẩu!");
+    	return false;
+    } else {
+    	$("#error_input_logIn").text("");
+    }
+}
+
 /*Điều khiển hiển thị của phần menu*/
 if($('html,body').scrollTop()>50){
 	$('#menu_scroll').css("display", "block");

@@ -2,6 +2,17 @@
     session_start();
 ?>
 
+<!-- Include file xử lý tác vụ đăng nhập -->
+<?php 
+	include('controller/logIn.php');
+?>
+
+<!-- Include file xử lý tác vụ đăng ký -->
+<?php 
+	include('controller/signIn.php');
+?>
+
+<!-- include file xử lý tác vụ đăng xuất -->
 <?php 
 	include('controller/logOut.php');
 ?>
@@ -19,15 +30,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="styles/CSS.css">
+	
 </head>
 <body>
-	<?php
-		if(isset($_SESSION['user_name'])) {
-			echo $_SESSION['user_name'];
-		} else {
-			echo "NULL";
-		}
- 	?>
 	<!-- Khung đăng ký, đăng nhập -->
 	<?php 
 		include('module/LogInAndSignIn.php');
@@ -80,7 +85,11 @@
 	?>
 
 	<!-- Nhúng file javascript -->
-	<script type="text/javascript" src="scripts/Script.js"></script> 
+	<script type="text/javascript" src="scripts/JavaScript.js"></script> 
+
+	<?php
+		include('controller/displayLogInBackground.php');
+	?>
 
 </body>
 </html>

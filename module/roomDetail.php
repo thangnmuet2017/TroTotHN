@@ -52,6 +52,22 @@
 				} ?></p>
 		</div>
 		<div class="col-xs-12">
+			<b class="col-sm-2 col-xs-4 room_info room_content">Đối tượng</b>
+			<p class="col-sm-4 col-xs-8 room_info"><?php 
+				if($row_content['DoiTuong']!='') {
+					echo $row_content['DoiTuong'];
+				} else {
+					echo 'Chưa xác định';
+				} ?></p>
+			<b class="col-sm-2 col-xs-4 room_info room_content">Ngày đăng</b>
+			<p class="col-sm-4 col-xs-8 room_info"><?php
+				if($row_content['ThoiGianDang']!='') {
+					echo $row_content['ThoiGianDang'];
+				} else {
+					echo 'Chưa xác định';
+				} ?></p>
+		</div>
+		<div class="col-xs-12">
 			<b class="col-sm-2 col-xs-4 room_info room_content">Tiện ích</b>
 			<p class="col-sm-10 col-xs-8 room_info"><?php
 				if($row_content['TienIch']!='') {
@@ -59,14 +75,6 @@
 				} else {
 					echo 'Chưa xác định';
 				} ?></p>
-			<b class="col-sm-2 col-xs-4 room_info room_content">Đối tượng</b>
-			<p class="col-sm-10 col-xs-8 room_info"><?php 
-				if($row_content['DoiTuong']!='') {
-					echo $row_content['DoiTuong'];
-				} else {
-					echo 'Chưa xác định';
-				} ?></p>
-			
 		</div>
 		<div class="col-xs-12">
 			<h4>Thông tin liên hệ</h4>

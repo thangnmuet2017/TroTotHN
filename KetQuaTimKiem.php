@@ -15,13 +15,6 @@
 
 </head>
 <body>
-	<?php
-		if(isset($_SESSION['user_name'])) {
-			echo $_SESSION['user_name'];
-		} else {
-			echo "NULL";
-		}
- 	?>
 	<!-- Khung đăng ký, đăng nhập -->
 	<?php 
 		include('module/LogInAndSignIn.php');
@@ -118,7 +111,7 @@
 </div>
 
 <!-- Nhúng file javascript -->
-<script type="text/javascript" src="scripts/Script.js"></script> 
+<script type="text/javascript" src="scripts/JavaScript.js"></script> 
 
 </body>
 </html>

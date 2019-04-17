@@ -1,5 +1,4 @@
 <?php
-
 	//kết nối đến CSDL
 	include('./controller/connectToDatabase.php');
 
@@ -150,4 +149,5 @@
 	}
 	echo '</ul>
 		</div>';
+
 ?>
