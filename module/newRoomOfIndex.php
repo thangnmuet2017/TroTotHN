@@ -13,9 +13,9 @@
 
 	//Kiểm tra nếu trang không có biến page thì là trang số 1
 	if(!isset($_GET['page'])) {
-	$page = 1;
+		$page = 1;
 	} else {
-	$page = $_GET['page'];
+		$page = $_GET['page'];
 	}
 
 	//Kết quả đầu tiên trả về của trang

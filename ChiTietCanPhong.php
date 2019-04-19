@@ -5,16 +5,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title id="title_room_page"><?php
-		include('controller/connectToDatabase.php');
-		$room_id = $_GET['id'];
-		$sql_select_room_title = 'SELECT TieuDe FROM gia_phong_tro WHERE IDPhongTro=' .$room_id;
-		if($result_title = mysqli_query($conn, $sql_select_room_title)) {
-			while ($row_title = mysqli_fetch_assoc($result_title)) {
-				echo $row_title['TieuDe'];
+	<title id="title_room_page">
+		<?php
+			include('controller/connectToDatabase.php');
+			$room_id = $_GET['id'];
+			$sql_select_room_title = 'SELECT TieuDe FROM gia_phong_tro WHERE IDPhongTro=' .$room_id;
+			if($result_title = mysqli_query($conn, $sql_select_room_title)) {
+				while ($row_title = mysqli_fetch_assoc($result_title)) {
+					echo $row_title['TieuDe'];
+				}
 			}
-		}
-	?></title>
+		?> 
+	</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- <script type="text/javascript" src="vendor/bootstrap.js"></script>

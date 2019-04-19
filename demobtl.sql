@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+﻿-- phpMyAdmin SQL Dump
 -- version 4.8.4
 -- https://www.phpmyadmin.net/
 --
@@ -77,14 +77,14 @@ INSERT INTO `dia_chi_phong_tro` (`IDPhongTro`, `DiaChi`, `XaPhuong`, `QuanHuyen`
 (3, '304 Tựu Liệt, Tam Hiệp, Thanh Trì, Hà Nội, Tựu Liệt, Thanh Trì, Hà Nội', 'Tam Hiệp', 'Thanh Trì', 'Vinh Bảo', '0974904012'),
 (4, 'số 12 ngõ 271 yên hòa, Yên Hòa', 'Yên Hòa', 'Cầu Giấy', 'Linh Nguyễn Văn', '0337021163'),
 (5, 'Phạm Văn Đồng, Cầu Giấy, Hà Nội, Phạm Văn Đồng, Cầu Giấy, Hà Nội', 'Dịch Vọng', 'Cầu Giấy', 'Huong Dang Thu', '0835152108'),
-(6, 'Ngõ 189 Hoàng Hoa Thám, Cống Vị, Ba Đình, Hà Nội', 'Cống Vị', 'Ba Vị', 'Homes Hồ Tây', '0972155533'),
+(6, 'Ngõ 189 Hoàng Hoa Thám, Cống Vị, Ba Đình, Hà Nội', 'Cống Vị', 'Ba Đình', 'Homes Hồ Tây', '0972155533'),
 (7, '- Địa chỉ: Số 30 ngõ 394 Phạm Văn Đồng, Cầu Giấy.', 'Dịch Vọng', 'Cầu Giấy', 'Huong Duong Thu', '0835152108'),
 (8, 'nhà 7 ngách 11 ngõ 39 Hồ Tùng Mậu Cầu Giấy, Hà Nội', 'Mai Dịch', 'Cầu Giấy', 'Phụng Trần', '0394879549'),
 (9, 'chung cư 96A Định Công', 'ĐỊnh Công', 'Hoàng Mai', 'Phòng Kinh Doanh BĐS ', '0901498666'),
 (10, ' so 8 ngo hoa binh 2 minh khai, Minh Khai, Hai Bà Trưng, Hà Nội', 'Minh Khai', 'Hai Bà Trưng', 'Duc Phung', '0984413519'),
 (11, '61 ngõ 54, Tây Tựu, Bắc Từ Liêm, Hà Nội, Tây Tựu, Từ Liêm, Hà Nội', 'Tây Tựu', 'Bắc Từ Liêm', 'Ken Jay', '0971369515'),
 (12, ' 304 Tựu Liệt, Tựu Liệt, Thanh Trì, Hà Nội', 'Tựu Liệt', 'Thanh Trì', 'Vinh Bảo', '0974904012'),
-(13, 'ngõ 21 Lê Văn Lương - Thanh Xuân, Lê Văn Lương, Thanh Xuân, Hà ', 'Nhân Chính', 'Thanh Xuâm', 'Phòng Kinh Doanh BĐS ', '0901498666'),
+(13, 'ngõ 21 Lê Văn Lương - Thanh Xuân, Lê Văn Lương, Thanh Xuân, Hà ', 'Nhân Chính', 'Thanh Xuân', 'Phòng Kinh Doanh BĐS ', '0901498666'),
 (14, 'Nhà 8 tầng ngõ 19 thôn Hậu Dưỡng, Kim Chung, Đông Anh, Hà Nội', 'Kim Chung', 'Đông Anh', 'Ken Jay', '0971369515'),
 (15, ' 75 ngõ 120 trần cung, Trần Cung, Cầu Giấy, Hà Nội', 'Dịch Vọng', 'Cầu Giấy', 'Duong Tung', '0836314397'),
 (16, 'số 25 ngõ 342 Hồ Tùng Mậu (p. Phú Diễn-Q. Bắc Từ Liêm)', 'Phú Diễn', 'Bắc Từ Liêm', 'Bùi Quang Xuân', '0989996984'),
