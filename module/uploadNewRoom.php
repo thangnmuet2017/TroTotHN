@@ -1,7 +1,7 @@
 <!-- Phần nhập thông tin -->
 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 	<div class="row">
-		<form method="GET" action="controller/upLoadNewRoom.php" onsubmit="return validateForm()">
+		<form method="POST" action="controller/upLoadNewRoom.php" onsubmit="return validateForm()"  enctype="multipart/form-data">
 			<!-- Phần các thông tin cơ bản -->
 			<div class="col-xs-12">
 				<h3>Các thông tin cơ bản</h3>
@@ -212,7 +212,7 @@
 					<p class="notes">Tin đăng có hình ảnh rõ ràng sẽ được xem và gọi gấp nhiều lần so với tin rao không có ảnh. Hãy đăng ảnh để được giao dịch nhanh chóng!</p>
 				</div>
 				<div class="col-xs-12">
-					<input type="file" id="upload_images" style="border: none;" multiple>
+					<input type="file" id="upload_images" style="border: none;" name="fileToUpload[]"  multiple="multiple">
 					<div class="preview_images col-xs-12" style="margin: 15px 0px; padding: 0px;"></div>
 				</div>
 			</div>
@@ -223,3 +223,5 @@
 		</form>
 	</div>
 </div>
+
+
