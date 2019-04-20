@@ -31,7 +31,7 @@
 
 	<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
 		<div class="thumbnail">
-			<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>" class="link_for_room_detail">
+			<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>&type=<?php echo $row['KieuPhong']; ?>" class="link_for_room_detail">
 				<img src="images/icon-acount.png" alt="">
 			</a>
 			<div class="caption" style="background-color: #2E3339;">

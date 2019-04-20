@@ -34,7 +34,7 @@
 		<div class="col-xs-12">
 			<div class="row">
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-					<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>" class="thumbnail">
+					<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>&type=<?php echo $action; ?>" class="thumbnail">
 						<img src="images/icon-acount.png" style="width: 100%; height: 100%;">
 					</a>
 				</div>
