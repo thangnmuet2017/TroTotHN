@@ -9,6 +9,7 @@
 		<?php
 			include('controller/connectToDatabase.php');
 			$room_id = $_GET['id'];
+			$room_type = $_GET['type'];
 			$sql_select_room_title = 'SELECT TieuDe FROM gia_phong_tro WHERE IDPhongTro=' .$room_id;
 			if($result_title = mysqli_query($conn, $sql_select_room_title)) {
 				while ($row_title = mysqli_fetch_assoc($result_title)) {
@@ -67,7 +68,8 @@
 	<div class="container">
 		<p id="path">
 			<a href="index.php" class="link">Trang chủ / </a>
-			<a href="PhongTro.php" class="link">Phòng trọ</a>
+			<a href="LoaiPhong.php?action=<?php echo $room_type; ?>" class="link"><?php echo $room_type; ?> / </a>
+			<a class = "link">Chi tiết</a>
 		</p>
 	</div>
 
