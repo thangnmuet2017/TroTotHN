@@ -2,7 +2,6 @@
 	if(isset($_POST['display_name']) && isset($_POST['signIn_password']) && isset($_POST['signIn_password_again'])) {
 		//kết nối đến CSDL
 		include('connectToDatabase.php');
-
 		$sql_select_user_name = 'SELECT user_name FROM user WHERE user_name = "' .$_POST['display_name']. '"';
 		if($result_user_name = mysqli_query($conn, $sql_select_user_name)) {
 			if(mysqli_num_rows($result_user_name) == 0) {

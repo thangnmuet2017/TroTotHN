@@ -38,8 +38,8 @@
 	<!-- Phần hiển thị đường dẫn các trang -->
 	<div class="container">
 		<p id="path">
-			<a href="TrangChu.php" class="link">Trang chủ / </a>
-			<a href="NhaNguyenCan.php" class="link">Nhà nguyên căn</a>
+			<a href="index.php" class="link">Trang chủ / </a>
+			<a class = "link"> Kết quả tìm kiếm </a>
 		</p>
 	</div>
 
