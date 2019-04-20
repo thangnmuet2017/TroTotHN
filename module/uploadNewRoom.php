@@ -218,7 +218,7 @@
 			</div>
 
 			<div class="col-xs-12" style="width: 100%; text-align: center;">
-				<button id="upload_room_button" type="submit" class="btn btn-success">Đăng tin</button>
+				<button id="upload_room_button" type="submit" class="btn btn-success" name = "DangTin">Đăng tin</button>
 			</div>
 		</form>
 	</div>
