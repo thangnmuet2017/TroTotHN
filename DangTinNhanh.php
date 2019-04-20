@@ -1,7 +1,9 @@
 <?php
     session_start();
+    if(!isset($_SESSION['user_name'])){
+    	header("location: http://localhost/TroTotHN-master/index.php");
+    }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -114,66 +116,6 @@
 	<script type="text/javascript" src="scripts/JSDangTin.js"></script>
 	<script type="text/javascript" src="scripts/JavaScript.js"></script> 
 
-	<!-- Kiểm tra nếu đăng nhập rồi thì mới cho đăng bài -->
-	<script type="text/javascript">
-		<?php
-			if(!isset($_SESSION['user_name'])) {
-				echo '$("#login_background").css("display", "block");
-							$("#logIn_area").css("display", "block");
-							$("#signIn_area").css("display", "none");
-							$(".logIn_menu_button").css("color", "green");
-							$(".signIn_menu_button").css("color", "black");
-							alert("Bạn phải đăng nhập để có thể đăng bài!");';
-			}
-		?>
-		
-		//Hàm kiểm tra điều kiện để submit nội dung của tin bài đăng
-		//Nếu mọi nội dung được nhập chính xác thì mới gửi dữ liệu lên server khi nhấn nút đăng tin
-		function validateForm() {
-			if(document.getElementById("input_title").value == ""
-				|| document.getElementById("input_room_price").value == ""
-				|| document.getElementById("input_room_area").value == ""
-				|| document.getElementById("quan_huyen_select").value == ""
-				|| document.getElementById("xaPhuongSelect").value == ""
-				|| document.getElementById("input_exacly_address").value == ""
-				|| document.getElementById("input_phone_number").value == ""
-				|| document.getElementById("input_room_describle").value == "") {
-				return false;
-			}
-			var checkboxKieuPhong = document.getElementsByName("KieuPhong");
-			var KieuPhongChecked = false;
-			for (var i = 0; i < checkboxKieuPhong.length; i++){
-				if (checkboxKieuPhong[i].checked === true){
-					KieuPhongChecked = true;
-				}
-			}
-			if (KieuPhongChecked == false) {
-				return false;
-			}
-
-			var checkboxKieuVeSinh = document.getElementsByName("VeSinh");
-			var KieuVeSinhChecked = false;
-			for (var i = 0; i < checkboxKieuVeSinh.length; i++){
-				if (checkboxKieuVeSinh[i].checked === true){
-					KieuVeSinhChecked = true;
-				}
-			}
-			if(KieuVeSinhChecked == false) {
-				return false;
-			}
-
-			<?php 
-				if(!isset($_SESSION['user_name'])) {
-					echo '$("#login_background").css("display", "block");
-						$("#logIn_area").css("display", "block");
-						$("#signIn_area").css("display", "none");
-						$(".logIn_menu_button").css("color", "green");
-						$(".signIn_menu_button").css("color", "black");
-						alert("Bạn cần đăng nhập để có thể đăng bài!");
-						return false;';
-				}
-			?>
-		}
-	</script>
+	
 </body>
 </html>
