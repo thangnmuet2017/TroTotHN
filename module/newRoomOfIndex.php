@@ -3,7 +3,7 @@
 	include('./controller/connectToDatabase.php');
 
 	//Câu lệnh sql lấy tất cả các phòng
-	$sql_select_all = 'SELECT gia_phong_tro.IDPhongTro, dia_chi_phong_tro.QuanHuyen, SUBSTRING(gia_phong_tro.TieuDe, 1, 60) AS TieuDe, gia_phong_tro.GiaChoThue FROM dia_chi_phong_tro, gia_phong_tro WHERE dia_chi_phong_tro.IDPhongTro=gia_phong_tro.IDPhongTro ORDER BY gia_phong_tro.ThoiGianDang DESC';
+	$sql_select_all = 'SELECT gia_phong_tro.IDPhongTro, dia_chi_phong_tro.QuanHuyen, SUBSTRING(gia_phong_tro.TieuDe, 1, 60) AS TieuDe, gia_phong_tro.GiaChoThue, gia_phong_tro.KieuPhong FROM dia_chi_phong_tro, gia_phong_tro WHERE dia_chi_phong_tro.IDPhongTro=gia_phong_tro.IDPhongTro ORDER BY gia_phong_tro.ThoiGianDang DESC';
 	$result_all = mysqli_query($conn, $sql_select_all);
 
 	$row_of_results = mysqli_num_rows($result_all); //Số lượng căn phòng đã đăng
@@ -13,16 +13,16 @@
 
 	//Kiểm tra nếu trang không có biến page thì là trang số 1
 	if(!isset($_GET['page'])) {
-	$page = 1;
+		$page = 1;
 	} else {
-	$page = $_GET['page'];
+		$page = $_GET['page'];
 	}
 
 	//Kết quả đầu tiên trả về của trang
 	$this_page_first_result = ($page-1)*$result_per_page;
 
 	//Câu lệnh sql lấy về các tin ứng với trang
-	$sql_select_each_page = 'SELECT gia_phong_tro.IDPhongTro, dia_chi_phong_tro.QuanHuyen, SUBSTRING(gia_phong_tro.TieuDe, 1, 60) AS TieuDe, gia_phong_tro.GiaChoThue FROM dia_chi_phong_tro, gia_phong_tro WHERE dia_chi_phong_tro.IDPhongTro=gia_phong_tro.IDPhongTro ORDER BY gia_phong_tro.ThoiGianDang DESC LIMIT ' .$this_page_first_result. ',' .$result_per_page;
+	$sql_select_each_page = 'SELECT gia_phong_tro.IDPhongTro, dia_chi_phong_tro.QuanHuyen, SUBSTRING(gia_phong_tro.TieuDe, 1, 60) AS TieuDe, gia_phong_tro.GiaChoThue, gia_phong_tro.KieuPhong FROM dia_chi_phong_tro, gia_phong_tro WHERE dia_chi_phong_tro.IDPhongTro=gia_phong_tro.IDPhongTro ORDER BY gia_phong_tro.ThoiGianDang DESC LIMIT ' .$this_page_first_result. ',' .$result_per_page;
 	$result_each_page = mysqli_query($conn, $sql_select_each_page);
 
 	while($row = mysqli_fetch_assoc($result_each_page)) {
@@ -30,12 +30,12 @@
 
 	<div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
 		<div class="thumbnail">
-			<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>" class="link_for_room_detail">
+			<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>&type=<?php echo $row['KieuPhong']; ?>" class="link_for_room_detail">
 				<img src="images/icon-acount.png" alt="">
 			</a>
 			<div class="caption" style="background-color: #2E3339;">
 				<div style="border-bottom: solid gray 1px; color: white; height: 45px; overflow: hidden;">
-					<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>" class="title_of_news link_for_room_detail">
+					<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>&type=<?php echo $row['KieuPhong']; ?>" class="title_of_news link_for_room_detail">
 						<b><?php echo $row['TieuDe']; ?></b>
 					</a>
 				</div>

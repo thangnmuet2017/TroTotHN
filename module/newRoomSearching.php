@@ -3,7 +3,7 @@
 	include('./controller/connectToDatabase.php');
 
 	//Câu lệnh sql lấy tất cả các phòng thỏa mãn điều kiện của bộ lọc
-	$sql_select_all_action = 'SELECT gia_phong_tro.IDPhongTro, gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS ThoiGian, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro';
+	$sql_select_all_action = 'SELECT gia_phong_tro.IDPhongTro, gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, gia_phong_tro.KieuPhong, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS ThoiGian, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro';
 	if(isset($_GET['kieuPhong'])) {
 		if($_GET['kieuPhong'] != "Tất cả") {
 			$sql_select_all_action = $sql_select_all_action.' AND gia_phong_tro.KieuPhong="' .$_GET['kieuPhong']. '"';
@@ -55,17 +55,17 @@
 
 	//Hiển thị các phòng tương ứng
 	while($row = mysqli_fetch_assoc($result_each_page)) {
-		?>
+?>
 		<div class="col-xs-12">
 			<div class="row">
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-					<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>" class="thumbnail">
+					<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>&type=<?php echo $row['KieuPhong']; ?> " class="thumbnail">
 						<img src="images/icon-acount.png" style="width: 100%; height: 100%;">
 					</a>
 				</div>
 				<div class="col-lg-9col-md-8 col-sm-8 col-xs-12">
 					<div class="row">
-						<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>" class="col-xs-12 link simple_room_info_line">
+						<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>&type=<?php echo $row['KieuPhong']; ?>" class="col-xs-12 link simple_room_info_line">
 							<h3 style="margin-top: 10px;"><?php echo $row['TieuDe']; ?></h3>
 						</a>
 						<b class="col-xs-12 simple_room_info_line"> 
@@ -97,9 +97,9 @@
 				</div>
 			</div>
 		</div> <!-- Hết 1 bài đăng -->
-		<?php
+<?php
 	}
-	//Phần pagination hiển thị số lượng trang
+
 	$path = ''; //các điều kiện bộ lọc trên url
 	if(isset($_GET['kieuPhong'])) {
 		$path = $path. '&kieuPhong=' . $_GET['kieuPhong'];
@@ -119,6 +119,8 @@
 	if(isset($_GET['price_to'])) {
 		$path = $path. '&price_to=' . $_GET['price_to'];
 	}
+
+	//Phần pagination hiển thị số lượng trang
 	$pre_page = $page;//kiểm tra xem nút previous có thể click được không, nếu click được thì chuyển trang
 
 	$next_page = $page; //kiểm tra xem nút next có thể click được k nếu click được thì chuyển trang
