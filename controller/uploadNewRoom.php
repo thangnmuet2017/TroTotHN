@@ -48,7 +48,7 @@
 	    }
 	    mysqli_query($conn, $sql_insert_imags);
 
-	    header("Location: http://localhost/TroTotHN-master/index.php");
+	    header("Location: http://localhost/TroTotHN/index.php");
 		
 	}
 

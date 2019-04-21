@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(!isset($_SESSION['user_name'])){
-    	header("location: http://localhost/TroTotHN-master/index.php");
+    	header("location: http://localhost/TroTotHN/index.php");
     }
 ?>
 
