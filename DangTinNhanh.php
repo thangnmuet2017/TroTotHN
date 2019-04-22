@@ -99,7 +99,8 @@
 						- Phần tiêu đề phải ít hơn 80 kí tự
 					</p>
 					<p>- Các bạn nên điền đầy đủ thông tin vào các mục để tin đăng có hiệu quả hơn.</p>
-					<p>- Tin đăng có hình ảnh rõ ràng sẽ được xem và gọi gấp nhiều lần so với tin rao không có ảnh. Hãy đăng ảnh để được giao dịch nhanh chóng!</p>
+					<p>- Tin đăng có hình ảnh rõ ràng sẽ được xem và gọi gấp nhiều lần so với tin rao không có ảnh. Hãy đăng ảnh để được giao dịch nhanh chóng! Giữ phím Ctrl để đăng nhiều ảnh cùng lúc.</p>
+					<p>- Giữ phím Ctrl để đăng nhiều ảnh cùng lúc. </p>
 				</b>
 			</div>
 			
