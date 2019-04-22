@@ -84,6 +84,29 @@ $("#upload_room_button").click( function() {
 	} else {
 		$("#error_input_kind_of_toilet").text("");
 	}
+
+	//Kiểm tra điều kiện của file submit và hiển thị lỗi
+	var file = document.getElementById("upload_images");
+	if('files' in file) {
+		if(file.files.length==0) {
+			document.getElementById("error_input_image").innerHTML = "Bạn phải chọn ít nhất 1 hình ảnh!";
+		} else {
+			var true_type = true;
+			for(var i=0; i<file.files.length; i++) {
+				if('type' in file) {
+					if(file.files[i].type != "image/jpg" && file.files[i].type != "image/jpeg" && file.files[i].type != "image/png" 
+						&& file.files[i].type != "image/gif") {
+						true_type = false;
+					}
+				} 
+			}
+			if(true_type === true) {
+				document.getElementById("error_input_image").innerHTML = "";
+			} else {
+				document.getElementById("error_input_image").innerHTML = "Hình ảnh phải có đuôi mở rộng là .jpg hoặc .jpeg hoặc .png hoặc .gif!";
+			}
+		}
+	} 
 });
 
 //Hàm kiểm tra điều kiện để submit nội dung của tin bài đăng
