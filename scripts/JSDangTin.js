@@ -86,7 +86,41 @@ $("#upload_room_button").click( function() {
 	}
 });
 
+//Hàm kiểm tra điều kiện để submit nội dung của tin bài đăng
+//Nếu mọi nội dung được nhập chính xác thì mới gửi dữ liệu lên server khi nhấn nút đăng tin
+function validateForm() {
+	if(document.getElementById("input_title").value == ""
+		|| document.getElementById("input_room_price").value == ""
+		|| document.getElementById("input_room_area").value == ""
+		|| document.getElementById("quan_huyen_select").value == ""
+		|| document.getElementById("xaPhuongSelect").value == ""
+		|| document.getElementById("input_exacly_address").value == ""
+		|| document.getElementById("input_phone_number").value == ""
+		|| document.getElementById("input_room_describle").value == "") {
+		return false;
+	}
+	var checkboxKieuPhong = document.getElementsByName("KieuPhong");
+	var KieuPhongChecked = false;
+	for (var i = 0; i < checkboxKieuPhong.length; i++){
+		if (checkboxKieuPhong[i].checked === true){
+			KieuPhongChecked = true;
+		}
+	}
+	if (KieuPhongChecked == false) {
+		return false;
+	}
 
+	var checkboxKieuVeSinh = document.getElementsByName("VeSinh");
+	var KieuVeSinhChecked = false;
+	for (var i = 0; i < checkboxKieuVeSinh.length; i++){
+		if (checkboxKieuVeSinh[i].checked === true){
+			KieuVeSinhChecked = true;
+		}
+	}
+	if(KieuVeSinhChecked == false) {
+		return false;
+	}
+}
 
 
 //Hiển thị bản xem trước của ảnh trước khi tải ảnh lên tin bài đăng
