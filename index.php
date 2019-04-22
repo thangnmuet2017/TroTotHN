@@ -2,6 +2,11 @@
     session_start();
 ?>
 
+<!-- Include file xử lý thêm dữ liệu vào csdl khi đăng tin -->
+<?php 
+	include('controller/uploadNewRoom.php');
+?>
+
 <!-- Include file xử lý tác vụ đăng nhập -->
 <?php 
 	include('controller/logIn.php');
