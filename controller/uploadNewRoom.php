@@ -1,5 +1,4 @@
 
-
 <?php
 	if(isset($_POST['title']) && isset($_POST['KieuPhong']) && isset($_POST['VeSinh']) && isset($_POST['price']) && isset($_POST['area']) && isset($_POST['electricPrice']) && isset($_POST['waterPrice']) && isset($_POST['doiTuong']) && isset($_POST['tienIch']) && isset($_POST['quanHuyen']) && isset($_POST['xaPhuong']) && isset($_POST['diaChi']) && isset($_POST['tenChuTro']) && isset($_POST['sdt']) && isset($_POST['moTa']) && isset($_SESSION['user_name'])) {
 

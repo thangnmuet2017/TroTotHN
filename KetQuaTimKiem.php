@@ -38,8 +38,8 @@
 	<!-- Phần hiển thị đường dẫn các trang -->
 	<div class="container">
 		<p id="path">
-			<a href="index.php" class="link">Trang chủ / </a>
-			<a class = "link"> Kết quả tìm kiếm </a>
+			<a href="TrangChu.php" class="link">Trang chủ / </a>
+			<a href="NhaNguyenCan.php" class="link">Nhà nguyên căn</a>
 		</p>
 	</div>
 
@@ -54,17 +54,17 @@
 					<div class="col-sx-12" style="border-bottom: gray solid 1px; padding: 15px 15px 10px 15px; margin: 0px 15px 15px 15px;">
 						<div class="row">
 							<div style="float: right; margin: 0px ;">
-								<select class="select_tags">
-									<option>Sắp xếp thời gian</option>
-									<option>Mới nhất</option>
-									<option>Cũ nhất</option>
+								<select class="select_tags" onchange="sortingSearching(this.value)">
+									<option value="">Sắp xếp thời gian</option>
+									<option value="Mới nhất">Mới nhất</option>
+									<option value="Cũ nhất">Cũ nhất</option>
 								</select>
 							</div>
 							<div style="float: right; margin: 0px 10px;">
-								<select class="select_tags">
-									<option>Sắp xếp giá</option>
-									<option>Rẻ nhất</option>
-									<option>Đắt nhất</option>
+								<select class="select_tags" onchange="sortingSearching(this.value)">
+									<option value="">Sắp xếp giá</option>
+									<option value="Rẻ nhất">Rẻ nhất</option>
+									<option value="Đắt nhất">Đắt nhất</option>
 								</select>
 							</div>
 						</div>
@@ -72,7 +72,7 @@
 
 					<!-- Phần hiển thị các tin bài -->
 					<div class="col-xs-12" id="room_main_content">
-						<div class="row">
+						<div class="row" id="new_rooms_of_searching">
 							
 							<!-- Hiển thị các phòng trọ -->
 							<?php
@@ -112,6 +112,29 @@
 
 <!-- Nhúng file javascript -->
 <script type="text/javascript" src="scripts/JavaScript.js"></script> 
+
+<script type="text/javascript">
+	function sortingSearching(str) {
+	if (str == "") {
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("new_rooms_of_searching").innerHTML = this.responseText;
+            }
+        };
+        xmlhttp.open("GET","./controller/sortingRoomOfSearching.php?s=" +str,true);
+        xmlhttp.send();
+    }
+}
+</script>
 
 </body>
 </html>

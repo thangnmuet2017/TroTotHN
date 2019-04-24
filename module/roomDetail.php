@@ -6,7 +6,11 @@
 
 	$sql_select_room_content = 'SELECT * FROM gia_phong_tro LEFT JOIN dia_chi_phong_tro ON gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro WHERE gia_phong_tro.IDPhongTro='.$room_id;
 
-	//$sql_select_room_image = 'SELECT DuongDan FROM hinh_anh_phong_tro WHERE IDPhongTro='.$room_id;
+	$sql_select_room_image = 'SELECT DuongDan FROM hinh_anh_phong_tro WHERE IDPhongTro='.$room_id;
+	$num_of_images = 0;
+	if($result_images = mysqli_query($conn, $sql_select_room_image)) {
+		$num_of_images = mysqli_num_rows($result_images);
+	}
 
 	if($result_content = mysqli_query($conn, $sql_select_room_content)) {
 		while($row_content = mysqli_fetch_assoc($result_content)) {
@@ -105,24 +109,38 @@
 			<div id="myCarousel" class="carousel slide" data-ride="carousel">
 				<!-- Indicators -->
 				<ol class="carousel-indicators">
-					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-					<li data-target="#myCarousel" data-slide-to="1"></li>
-					<li data-target="#myCarousel" data-slide-to="2"></li>
+					<?php
+						for($i=0; $i<$num_of_images; $i++) {
+							if($i==0) {
+								echo '<li data-target="#myCarousel" data-slide-to="0" class="active"></li>';
+							} else {
+								echo '<li data-target="#myCarousel" data-slide-to="' .$i. '"></li>';
+							}
+						}
+					?>
 				</ol>
 
 				<!-- Wrapper for slides -->
 				<div class="carousel-inner">
-					<div class="item active">
-						<img src="images/1.jpg" alt="">
-					</div>
-
-					<div class="item">
-						<img src="images/2.jpg" alt="">
-					</div>
-
-					<div class="item">
-						<img src="images/3.jpg" alt="">
-					</div>
+					<?php 
+						if($result_images = mysqli_query($conn, $sql_select_room_image)) {
+							$count = 0;
+							while($row_images = mysqli_fetch_assoc($result_images)) {
+								if($count==0) {
+									echo '<div class="item active">
+									<img src="' .$row_images['DuongDan']. '" alt="">
+									</div>';
+								} else {
+									echo '<div class="item">
+									<img src="' .$row_images['DuongDan']. '" alt="">
+									</div>';
+								}
+								$count++;
+							}
+						} else {
+							echo "ERROR";
+						}
+					?>
 				</div>
 
 				<!--  Left and right controls -->

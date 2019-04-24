@@ -31,17 +31,24 @@
 
 	//Hiển thị các phòng tương ứng
 	while($row = mysqli_fetch_assoc($result_each_page)) {
-?>
+		?>
 		<div class="col-xs-12">
 			<div class="row">
 				<div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
-					<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>&type=<?php echo $action; ?>" class="thumbnail">
-						<img src="images/icon-acount.png" style="width: 100%; height: 100%;">
+					<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>" class="thumbnail">
+						<?php
+							$sql_select_image = 'SELECT DuongDan FROM hinh_anh_phong_tro WHERE IDPhongTro=' .$row['IDPhongTro']. ' LIMIT 1';
+							if($result_img = mysqli_query($conn, $sql_select_image)) {
+								while ($row_img = mysqli_fetch_assoc($result_img)) {
+									echo '<img src="' .$row_img['DuongDan']. '" style="width: 100%; height: 180px;">';
+								}
+							}
+						?>
 					</a>
 				</div>
-				<div class="col-lg-9 col-md-8 col-sm-8 col-xs-12">
+				<div class="col-lg-9col-md-8 col-sm-8 col-xs-12">
 					<div class="row">
-						<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>&type=<?php echo $action; ?>" class="col-xs-12 link simple_room_info_line">
+						<a href="ChiTietCanPhong.php?id=<?php echo $row['IDPhongTro']; ?>" class="col-xs-12 link simple_room_info_line">
 							<h3 style="margin-top: 10px;"><?php echo $row['TieuDe']; ?></h3>
 						</a>
 						<b class="col-xs-12 simple_room_info_line"> 
@@ -68,14 +75,12 @@
 							<span style="color: green;">Giá: </span>
 							<span><?php echo $row['GiaChoThue']; ?> đồng/tháng</span>
 						</b>
-						<p class="col-xs-12 text-right simple_room_info_line" style="color: gray">
-							<?php echo $row['diff'] . ' ngày trước';?>
-						</p>
+						<p class="col-xs-12 text-right simple_room_info_line" style="color: gray">1 ngày trước</p>
 					</div>
 				</div>
 			</div>
 		</div> <!-- Hết 1 bài đăng -->
-<?php
+		<?php
 	}
 	//Phần pagination hiển thị số lượng trang
 	$pre_page = $page;//kiểm tra xem nút previous có thể click được không, nếu click được thì chuyển trang

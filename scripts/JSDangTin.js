@@ -109,61 +109,19 @@ $("#upload_room_button").click( function() {
 	} 
 });
 
-//Hàm kiểm tra điều kiện để submit nội dung của tin bài đăng
-//Nếu mọi nội dung được nhập chính xác thì mới gửi dữ liệu lên server khi nhấn nút đăng tin
-function validateForm() {
-	if(document.getElementById("input_title").value == ""
-		|| document.getElementById("input_room_price").value == ""
-		|| document.getElementById("input_room_area").value == ""
-		|| document.getElementById("quan_huyen_select").value == ""
-		|| document.getElementById("xaPhuongSelect").value == ""
-		|| document.getElementById("input_exacly_address").value == ""
-		|| document.getElementById("input_phone_number").value == ""
-		|| document.getElementById("input_room_describle").value == "") {
-		return false;
-	}
-	var checkboxKieuPhong = document.getElementsByName("KieuPhong");
-	var KieuPhongChecked = false;
-	for (var i = 0; i < checkboxKieuPhong.length; i++){
-		if (checkboxKieuPhong[i].checked === true){
-			KieuPhongChecked = true;
-		}
-	}
-	if (KieuPhongChecked == false) {
-		return false;
-	}
+/*Hàm hiển thị hình ảnh trước khi đăng tin*/
+function previewImages() {
+	var fileInput = document.getElementById('upload_images');
+	var filesAmount = fileInput.files.length;
+    var str = "";
+    for (i = 0; i < filesAmount; i++) {
+        var reader = new FileReader();
 
-	var checkboxKieuVeSinh = document.getElementsByName("VeSinh");
-	var KieuVeSinhChecked = false;
-	for (var i = 0; i < checkboxKieuVeSinh.length; i++){
-		if (checkboxKieuVeSinh[i].checked === true){
-			KieuVeSinhChecked = true;
-		}
-	}
-	if(KieuVeSinhChecked == false) {
-		return false;
-	}
+        reader.onload = function(event) {
+            str += '<img class="col-sm-4 col-xs-12 thumbnail view_images" src="' +event.target.result+ '"/>';
+            document.getElementById('preview_images').innerHTML = str;
+        }
+        reader.readAsDataURL(fileInput.files[i]);
+    }
 }
 
-
-//Hiển thị bản xem trước của ảnh trước khi tải ảnh lên tin bài đăng
-var imagesPreview = function(input, placeToInsertImagePreview) {
-
-	if (input.files) {
-		var filesAmount = input.files.length;
-
-		for (i = 0; i < filesAmount; i++) {
-			var reader = new FileReader();
-
-			reader.onload = function(event) {
-				$($.parseHTML('<img>')).attr('src', event.target.result).addClass('col-sm-4 col-xs-12 thumbnail view_images').appendTo(placeToInsertImagePreview);
-			}
-			reader.readAsDataURL(input.files[i]);
-		}
-	}
-
-};
-
-$('#upload_images').on('change', function() {
-	imagesPreview(this, 'div.preview_images');
-});

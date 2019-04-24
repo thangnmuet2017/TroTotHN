@@ -49,11 +49,11 @@
 		<form action="index.php" method="POST" onsubmit="return validateSignInForm()">
 			<div class="form-group col-xs-offset-1 col-xs-10">
 				<label for="display_name">Tên tài khoản: </label>
-				<input type="text" class="form-control" id="display_name" placeholder="Tên hiển thị" name="display_name" pattern="[A-Za-z0-9_]{6,}"  maxlength="20" title="Từ 6 đến 20 ký tự, bao gồm các ký tự A-Z, a-z, dấu gạch dưới và từ 0-9!">
+				<input type="text" class="form-control" id="display_name" placeholder="Tên hiển thị" name="display_name" pattern="[A-Za-z0-9]{6,}"  maxlength="10" title="Từ 6 đến 10 ký tự, bao gồm các ký tự A-Z, a-z và 0-9!">
 			</div>
 			<div class="form-group  col-xs-offset-1 col-xs-10">
 				<label for="signIn_password">Mật khẩu:</label>
-				<input type="password" class="form-control" id="signIn_password" placeholder="Mật khẩu" name="signIn_password" pattern="[A-Za-z0-9_!]{6,}" maxlength="30" title="Từ 6 đến 30 ký tự, bao gồm các ký tự A-Z, a-z, dấu gạch dưới, dấu chấm than và từ 0-9!">
+				<input type="password" class="form-control" id="signIn_password" placeholder="Mật khẩu" name="signIn_password" pattern=".{6,}" maxlength="10" title="Từ 6 đến 10 ký tự!">
 			</div>
 			<div class="form-group  col-xs-offset-1 col-xs-10">
 				<label for="signIn_password_again">Nhập lại mật khẩu:  </label>

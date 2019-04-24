@@ -1,7 +1,8 @@
+
 <!-- Phần nhập thông tin -->
 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 	<div class="row">
-		<form method="POST" action="controller/upLoadNewRoom.php" onsubmit="return validateForm()"  enctype="multipart/form-data">
+		<form method="POST" action="index.php" onsubmit="return validateForm()"  enctype="multipart/form-data">
 			<!-- Phần các thông tin cơ bản -->
 			<div class="col-xs-12">
 				<h3>Các thông tin cơ bản</h3>
@@ -132,7 +133,7 @@
 						<option value="Huyện Phúc Thọ">Huyện Phúc Thọ</option>
 						<option value="Huyện Quốc Oai">Huyện Quốc Oai</option>
 						<option value="Huyện Sóc Sơn">Huyện Sóc Sơn</option>
-						<option value="Thị xã Sơn Tây">Thị xã Sơn Tây</option>
+						<option value="Huyện Sơn Tây">Huyện Sơn Tây</option>
 						<option value="Quận Tây Hồ">Quận Tây Hồ</option>
 						<option value="Huyện Thạch Thất">Huyện Thạch Thất</option>
 						<option value="Huyện Thanh Oai">Huyện Thanh Oai</option>
@@ -206,19 +207,19 @@
 
 			<div class="col-xs-12"> <!-- Hình ảnh của căn phòng -->
 				<div class="col-xs-12">
-					<h4>Hình ảnh</h4>
+					<h4>Hình ảnh <span>*</span> <span class="error_input" id="error_input_image"></span></h4>
 				</div>
 				<div class="col-xs-12">
 					<p class="notes">Tin đăng có hình ảnh rõ ràng sẽ được xem và gọi gấp nhiều lần so với tin rao không có ảnh. Hãy đăng ảnh để được giao dịch nhanh chóng!</p>
 				</div>
 				<div class="col-xs-12">
-					<input type="file" id="upload_images" style="border: none;" name="fileToUpload[]"  multiple="multiple">
-					<div class="preview_images col-xs-12" style="margin: 15px 0px; padding: 0px;"></div>
+					<input type="file" id="upload_images" style="border: none;" name="fileToUpload[]" onchange="previewImages()"  multiple="multiple">
+					<div class="preview_images col-xs-12" id="preview_images" style="margin: 15px 0px; padding: 0px;"></div>
 				</div>
 			</div>
 
 			<div class="col-xs-12" style="width: 100%; text-align: center;">
-				<button id="upload_room_button" type="submit" class="btn btn-success" name = "DangTin">Đăng tin</button>
+				<button id="upload_room_button" type="submit" class="btn btn-success">Đăng tin</button>
 			</div>
 		</form>
 	</div>

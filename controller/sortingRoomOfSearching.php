@@ -1,9 +1,13 @@
 <?php
+	$value = $_GET['s'];
+
 	//kết nối đến CSDL
-	include('./controller/connectToDatabase.php');
+	include('connectToDatabase.php');
 
 	//Câu lệnh sql lấy tất cả các phòng thỏa mãn điều kiện của bộ lọc
 	$sql_select_all_action = 'SELECT gia_phong_tro.IDPhongTro, gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS ThoiGian, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro';
+
+
 	if(isset($_GET['kieuPhong'])) {
 		if($_GET['kieuPhong'] != "Tất cả") {
 			$sql_select_all_action = $sql_select_all_action.' AND gia_phong_tro.KieuPhong="' .$_GET['kieuPhong']. '"';
@@ -28,6 +32,16 @@
 		if($_GET['price_from']!="0" || $_GET['price_to']!="5000000") {
 			$sql_select_all_action = $sql_select_all_action.' AND gia_phong_tro.GiaChoThue BETWEEN ' .$_GET['price_from']. ' AND ' .$_GET['price_to'];
 		}
+	}
+
+	if($value == "Rẻ nhất") {
+		$sql_select_all_action = $sql_select_all_action. ' ORDER BY gia_phong_tro.GiaChoThue ASC';
+	} else if($value == "Đắt nhất") {
+		$sql_select_all_action = $sql_select_all_action. ' ORDER BY gia_phong_tro.GiaChoThue DESC';
+	} else if($value == "Mới nhất") {
+		$sql_select_all_action = $sql_select_all_action. ' ORDER BY gia_phong_tro.ThoiGianDang DESC';
+	} else if($value == "Cũ nhất") {
+		$sql_select_all_action = $sql_select_all_action. ' ORDER BY gia_phong_tro.ThoiGianDang ASC';
 	}
 
 	$row_of_results = 0;
