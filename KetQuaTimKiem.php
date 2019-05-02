@@ -54,18 +54,158 @@
 					<div class="col-sx-12" style="border-bottom: gray solid 1px; padding: 15px 15px 10px 15px; margin: 0px 15px 15px 15px;">
 						<div class="row">
 							<div style="float: right; margin: 0px ;">
-								<select class="select_tags" onchange="sortingSearching(this.value)">
-									<option value="">Sắp xếp thời gian</option>
-									<option value="Mới nhất">Mới nhất</option>
-									<option value="Cũ nhất">Cũ nhất</option>
-								</select>
+								<div class="dropdown">
+								    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #5cb85c; border: solid 1px #5cb85c;">
+								    	<?php
+								    		if(isset($_GET['sorting_time'])) {
+								    			echo $_GET['sorting_time'];
+								    		} else {
+								    			echo "Sắp xếp thời gian";
+								    		}
+								    	?>
+								    <span class="caret"></span></button>
+								    <ul class="dropdown-menu">
+								    	<li><a href="KetQuaTimKiem.php?
+								    		<?php
+								    			$url = '';
+								    			if(isset($_GET['kieuPhong'])) {
+													if($_GET['kieuPhong'] != "Tất cả") {
+														$url = $url. 'kieuPhong=' .$_GET['kieuPhong'].'&';
+													}
+												}
+												if(isset($_GET['kieuVeSinh'])) {
+													if($_GET['kieuVeSinh'] != "Tất cả") {
+														$url = $url. 'kieuVeSinh=' .$_GET['kieuVeSinh'].'&';
+													}
+												}
+												if(isset($_GET['quanHuyen'])) {
+													if($_GET['quanHuyen']!="") {
+														$url = $url. 'quanHuyen=' .$_GET['quanHuyen'].'&';
+													}
+												}
+												if(isset($_GET['xaPhuong'])) {
+													if($_GET['xaPhuong']!="") {
+														$url = $url. 'xaPhuong=' .$_GET['xaPhuong'].'&';
+													}
+												}
+												if(isset($_GET['price_from']) && isset($_GET['price_to'])) {
+													if($_GET['price_from']!="0" || $_GET['price_to']!="5000000") {
+														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '$';
+													}
+												}
+												echo $url;
+								    		?>
+								    		sorting_time=Mới+nhất">Mới nhất</a></li>
+								    	<li><a href="KetQuaTimKiem.php?
+								    		<?php
+								    			$url = '';
+								    			if(isset($_GET['kieuPhong'])) {
+													if($_GET['kieuPhong'] != "Tất cả") {
+														$url = $url. 'kieuPhong=' .$_GET['kieuPhong'].'&';
+													}
+												}
+												if(isset($_GET['kieuVeSinh'])) {
+													if($_GET['kieuVeSinh'] != "Tất cả") {
+														$url = $url. 'kieuVeSinh=' .$_GET['kieuVeSinh'].'&';
+													}
+												}
+												if(isset($_GET['quanHuyen'])) {
+													if($_GET['quanHuyen']!="") {
+														$url = $url. 'quanHuyen=' .$_GET['quanHuyen'].'&';
+													}
+												}
+												if(isset($_GET['xaPhuong'])) {
+													if($_GET['xaPhuong']!="") {
+														$url = $url. 'xaPhuong=' .$_GET['xaPhuong'].'&';
+													}
+												}
+												if(isset($_GET['price_from']) && isset($_GET['price_to'])) {
+													if($_GET['price_from']!="0" || $_GET['price_to']!="5000000") {
+														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '$';
+													}
+												}
+												echo $url;
+								    		?>
+								    		sorting_time=Cũ+nhất">Cũ nhất</a></li>
+								    </ul>
+								</div>
 							</div>
 							<div style="float: right; margin: 0px 10px;">
-								<select class="select_tags" onchange="sortingSearching(this.value)">
-									<option value="">Sắp xếp giá</option>
-									<option value="Rẻ nhất">Rẻ nhất</option>
-									<option value="Đắt nhất">Đắt nhất</option>
-								</select>
+								<div class="dropdown">
+								    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #5cb85c; border: solid 1px #5cb85c;">
+								    	<?php
+								    		if(isset($_GET['sorting_price'])) {
+								    			echo $_GET['sorting_price'];
+								    		} else {
+								    			echo "Sắp xếp giá";
+								    		}
+								    	?>
+								    <span class="caret"></span></button>
+								    <ul class="dropdown-menu">
+								    	<li><a href="KetQuaTimKiem.php?
+								    		<?php
+								    			$url = '';
+								    			if(isset($_GET['kieuPhong'])) {
+													if($_GET['kieuPhong'] != "Tất cả") {
+														$url = $url. 'kieuPhong=' .$_GET['kieuPhong'].'&';
+													}
+												}
+												if(isset($_GET['kieuVeSinh'])) {
+													if($_GET['kieuVeSinh'] != "Tất cả") {
+														$url = $url. 'kieuVeSinh=' .$_GET['kieuVeSinh'].'&';
+													}
+												}
+												if(isset($_GET['quanHuyen'])) {
+													if($_GET['quanHuyen']!="") {
+														$url = $url. 'quanHuyen=' .$_GET['quanHuyen'].'&';
+													}
+												}
+												if(isset($_GET['xaPhuong'])) {
+													if($_GET['xaPhuong']!="") {
+														$url = $url. 'xaPhuong=' .$_GET['xaPhuong'].'&';
+													}
+												}
+												if(isset($_GET['price_from']) && isset($_GET['price_to'])) {
+													if($_GET['price_from']!="0" || $_GET['price_to']!="5000000") {
+														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '$';
+													}
+												}
+												echo $url;
+								    		?>
+								    		sorting_price=Rẻ+nhất">Rẻ nhất</a></li>
+								    	<li><a href="KetQuaTimKiem.php?
+											<?php
+								    			$url = '';
+								    			if(isset($_GET['kieuPhong'])) {
+													if($_GET['kieuPhong'] != "Tất cả") {
+														$url = $url. 'kieuPhong=' .$_GET['kieuPhong'].'&';
+													}
+												}
+												if(isset($_GET['kieuVeSinh'])) {
+													if($_GET['kieuVeSinh'] != "Tất cả") {
+														$url = $url. 'kieuVeSinh=' .$_GET['kieuVeSinh'].'&';
+													}
+												}
+												if(isset($_GET['quanHuyen'])) {
+													if($_GET['quanHuyen']!="") {
+														$url = $url. 'quanHuyen=' .$_GET['quanHuyen'].'&';
+													}
+												}
+												if(isset($_GET['xaPhuong'])) {
+													if($_GET['xaPhuong']!="") {
+														$url = $url. 'xaPhuong=' .$_GET['xaPhuong'].'&';
+													}
+												}
+												if(isset($_GET['price_from']) && isset($_GET['price_to'])) {
+													if($_GET['price_from']!="0" || $_GET['price_to']!="5000000") {
+														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '$';
+													}
+												}
+												echo $url;
+								    		?>
+								    		sorting_price=Đắt+nhất">Đắt nhất</a></li>
+								    </ul>
+								</div>
 							</div>
 						</div>
 					</div>
