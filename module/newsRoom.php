@@ -5,7 +5,21 @@
 	include('./controller/connectToDatabase.php');
 
 	//Câu lệnh sql lấy tất cả các phòng thỏa mãn điều kiện của action
-	$sql_select_all_action = 'SELECT gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS diff, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro AND gia_phong_tro.KieuPhong="' .$action. '" ORDER BY gia_phong_tro.ThoiGianDang DESC';
+	$sql_select_all_action = 'SELECT gia_phong_tro.IDPhongTro, gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS diff, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro AND gia_phong_tro.KieuPhong="' .$action. '"';
+	if(isset($_GET['sorting_time'])) { //lấy giá trị (nếu có) của phần sắp xếp phòng trọ theo thời gian và thêm vào câu lệnh sql
+		if($_GET['sorting_time'] == "Mới nhất") {
+			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.ThoiGianDang DESC';
+		} else if($_GET['sorting_time'] == "Cũ nhất") {
+			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.ThoiGianDang ASC';
+		}
+	}
+	if(isset($_GET['sorting_price'])) { //Lấy giá trị (nếu có) của phần sắp xếp phòng trọ theo giá và thêm vào câu lệnh sql
+		if($_GET['sorting_price'] == "Rẻ nhất") {
+			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.GiaChoThue ASC';
+		} else if($_GET['sorting_price'] == "Đắt nhất") {
+			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.GiaChoThue DESC';
+		}
+	}
 	$row_of_results = 0;
 	if($result_all = mysqli_query($conn, $sql_select_all_action)) {
 		$row_of_results = mysqli_num_rows($result_all); //Số lượng căn phòng đã đăng
@@ -26,7 +40,8 @@
 	//Kết quả đầu tiên trả về của trang
 	$this_page_first_result = ($page-1)*$result_per_page;
 
-	$sql_select_each_page = 'SELECT gia_phong_tro.IDPhongTro, gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS diff, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro AND gia_phong_tro.KieuPhong="' .$action. '" ORDER BY gia_phong_tro.ThoiGianDang DESC LIMIT ' .$this_page_first_result. ',' .$result_per_page;
+	//Câu lệnh sql để hiển thị các phòng của mỗi trang
+	$sql_select_each_page = $sql_select_all_action. ' LIMIT ' .$this_page_first_result. ',' .$result_per_page;
 	$result_each_page = mysqli_query($conn, $sql_select_each_page);
 
 	//Hiển thị các phòng tương ứng
@@ -83,15 +98,21 @@
 		<?php
 	}
 	//Phần pagination hiển thị số lượng trang
-	$pre_page = $page;//kiểm tra xem nút previous có thể click được không, nếu click được thì chuyển trang
+	$pre_page = $page;//biến kiểm tra xem nút previous có thể click được không, nếu click được thì chuyển trang
 
-	$next_page = $page; //kiểm tra xem nút next có thể click được k nếu click được thì chuyển trang
+	$next_page = $page; //biến kiểm tra xem nút next có thể click được k nếu click được thì chuyển trang
 
 	echo '<div class="col-xs-12">
 	<ul class="pagination pull-right">';
 	if($page>1) {
 		$pre_page = $page - 1;
-		echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="LoaiPhong.php?action=' .$action. '&page=' .$pre_page. '"><</a></li>';
+		echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="LoaiPhong.php?action=' .$action;
+		if(isset($_GET['sorting_time'])) {
+			echo '&sorting_time=' .$_GET['sorting_time'];
+		} else if(isset($_GET['sorting_price'])) {
+			echo '&sorting_price=' .$_GET['sorting_price'];
+		}
+		echo '&page=' .$pre_page. '"><</a></li>';
 	} else {
 		echo '<li class="disabled"> <span><</span> </li>';
 	}
@@ -100,14 +121,26 @@
 		if($pos_page == $page) {
 			echo '<li class="active"><span>' .$pos_page. '</span></li>';
 		} else {
-			echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="LoaiPhong.php?action=' .$action. '&page=' .$pos_page. '">' .$pos_page. '</a></li>';
+			echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="LoaiPhong.php?action=' .$action;
+			if(isset($_GET['sorting_time'])) {
+				echo '&sorting_time=' .$_GET['sorting_time'];
+			} else if(isset($_GET['sorting_price'])) {
+				echo '&sorting_price=' .$_GET['sorting_price'];
+			}
+			echo '&page=' .$pos_page. '">' .$pos_page. '</a></li>';
 		}
 
 	}
 
 	if($page<$number_of_pages) {
 		$next_page = $page + 1;
-		echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="LoaiPhong.php?action=' .$action. '&page=' .$next_page. '">></a></li>';
+		echo '<li><a style="margin: 0px 3px;" type="button" class="btn btn-default" href="LoaiPhong.php?action=' .$action;
+		if(isset($_GET['sorting_time'])) {
+			echo '&sorting_time=' .$_GET['sorting_time'];
+		} else if(isset($_GET['sorting_price'])) {
+			echo '&sorting_price=' .$_GET['sorting_price'];
+		}
+		echo '&page=' .$next_page. '">></a></li>';
 	} else {
 		echo '<li class="disabled"> <span>></span> </li>';
 	}
