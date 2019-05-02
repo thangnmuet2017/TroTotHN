@@ -54,18 +54,38 @@
 					<div class="col-sx-12" style="border-bottom: gray solid 1px; padding: 15px 15px 10px 15px; margin: 0px 15px 15px 15px;">
 						<div class="row">
 							<div style="float: right; margin: 0px ;">
-								<select class="select_tags" onchange="sorting(this.value)">
-									<option value="">Sắp xếp thời gian</option>
-									<option value="Mới nhất">Mới nhất</option>
-									<option value="Cũ nhất">Cũ nhất</option>
-								</select>
+								<div class="dropdown">
+								    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #5cb85c; border: solid 1px #5cb85c;">
+								    	<?php
+								    		if(isset($_GET['sorting_time'])) {
+								    			echo $_GET['sorting_time'];
+								    		} else {
+								    			echo "Sắp xếp thời gian";
+								    		}
+								    	?>
+								    <span class="caret"></span></button>
+								    <ul class="dropdown-menu">
+								    	<li><a href="LoaiPhong.php?action=<?php echo $_GET['action']; ?>&sorting_time=Mới+nhất">Mới nhất</a></li>
+								    	<li><a href="LoaiPhong.php?action=<?php echo $_GET['action']; ?>&sorting_time=Cũ+nhất">Cũ nhất</a></li>
+								    </ul>
+								</div>
 							</div>
 							<div style="float: right; margin: 0px 10px;">
-								<select class="select_tags" onchange="sorting(this.value)">
-									<option value="">Sắp xếp giá</option>
-									<option value="Rẻ nhất">Rẻ nhất</option>
-									<option value="Đắt nhất">Đắt nhất</option>
-								</select>
+								<div class="dropdown">
+								    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="background-color: #5cb85c; border: solid 1px #5cb85c;">
+								    	<?php
+								    		if(isset($_GET['sorting_price'])) {
+								    			echo $_GET['sorting_price'];
+								    		} else {
+								    			echo "Sắp xếp giá";
+								    		}
+								    	?>
+								    <span class="caret"></span></button>
+								    <ul class="dropdown-menu">
+								    	<li><a href="LoaiPhong.php?action=<?php echo $_GET['action']; ?>&sorting_price=Rẻ+nhất">Rẻ nhất</a></li>
+								    	<li><a href="LoaiPhong.php?action=<?php echo $_GET['action']; ?>&sorting_price=Đắt+nhất">Đắt nhất</a></li>
+								    </ul>
+								</div>
 							</div>
 						</div>
 					</div>
