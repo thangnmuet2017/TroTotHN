@@ -133,29 +133,5 @@
 <!-- Nhúng file javascript -->
 <script type="text/javascript" src="scripts/JavaScript.js"></script> 
 
-<script type="text/javascript">
-	function sorting(str) {
-	if (str == "") {
-        return;
-    } else { 
-        if (window.XMLHttpRequest) {
-            // code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        } else {
-            // code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                document.getElementById("new_rooms").innerHTML = this.responseText;
-            }
-        };
-        var action = <?php echo '"' .$_GET['action']. '"'; ?>;
-        xmlhttp.open("GET","./controller/sortingRoom.php?s=" +str+ "&action=" +action,true);
-        xmlhttp.send();
-    }
-}
-</script>
-
 </body>
 </html>
