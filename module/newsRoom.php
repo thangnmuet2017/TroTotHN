@@ -90,7 +90,7 @@
 							<span style="color: green;">Giá: </span>
 							<span><?php echo $row['GiaChoThue']; ?> đồng/tháng</span>
 						</b>
-						<p class="col-xs-12 text-right simple_room_info_line" style="color: gray">1 ngày trước</p>
+						<p class="col-xs-12 text-right simple_room_info_line" style="color: gray"><?php echo $row['diff'];?> ngày trước</p>
 					</div>
 				</div>
 			</div>
