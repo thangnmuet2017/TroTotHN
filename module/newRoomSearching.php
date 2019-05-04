@@ -30,6 +30,21 @@
 		}
 	}
 
+	if(isset($_GET['sorting_time'])) { //lấy giá trị (nếu có) của phần sắp xếp phòng trọ theo thời gian và thêm vào câu lệnh sql
+		if($_GET['sorting_time'] == "Mới nhất") {
+			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.ThoiGianDang DESC';
+		} else if($_GET['sorting_time'] == "Cũ nhất") {
+			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.ThoiGianDang ASC';
+		}
+	}
+	if(isset($_GET['sorting_price'])) { //Lấy giá trị (nếu có) của phần sắp xếp phòng trọ theo giá và thêm vào câu lệnh sql
+		if($_GET['sorting_price'] == "Rẻ nhất") {
+			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.GiaChoThue ASC';
+		} else if($_GET['sorting_price'] == "Đắt nhất") {
+			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.GiaChoThue DESC';
+		}
+	}
+
 	$row_of_results = 0;
 	if($result_all = mysqli_query($conn, $sql_select_all_action)) {
 		$row_of_results = mysqli_num_rows($result_all); //Số lượng căn phòng đã đăng
@@ -126,6 +141,12 @@
 	if(isset($_GET['price_to'])) {
 		$path = $path. '&price_to=' . $_GET['price_to'];
 	}
+	if(isset($_GET['sorting_time'])) {
+		$path = $path. '&sorting_time=' .$_GET['sorting_time'];
+	} else if(isset($_GET['sorting_price'])) {
+		$path = $path. '&sorting_price=' .$_GET['sorting_price'];
+	}
+
 	$pre_page = $page;//kiểm tra xem nút previous có thể click được không, nếu click được thì chuyển trang
 
 	$next_page = $page; //kiểm tra xem nút next có thể click được k nếu click được thì chuyển trang
