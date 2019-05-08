@@ -1,6 +1,6 @@
 
 <?php
-	if(isset($_POST['title']) && isset($_POST['KieuPhong']) && isset($_POST['VeSinh']) && isset($_POST['price']) && isset($_POST['area']) && isset($_POST['electricPrice']) && isset($_POST['waterPrice']) && isset($_POST['doiTuong']) && isset($_POST['tienIch']) && isset($_POST['quanHuyen']) && isset($_POST['xaPhuong']) && isset($_POST['diaChi']) && isset($_POST['tenChuTro']) && isset($_POST['sdt']) && isset($_POST['moTa']) && isset($_SESSION['user_name'])) {
+	if(isset($_POST['DangTin'])) {
 
 		//kết nối đến CSDL
 		include('connectToDatabase.php');
@@ -14,7 +14,7 @@
 			$last_id = mysqli_insert_id($conn);
 
 			//Câu lệnh sql insert giá trị vào bảng gia_phong_tro
-			$sql_insert_gia_phong_tro = 'INSERT INTO gia_phong_tro(IDPhongTro, user_name, TieuDe, KieuPhong, KieuVeSinh, GiaChoThue, DienTich, GiaDien, GiaNuoc, DoiTuong, TienIch, MoTa, ThoiGianDang) VALUE("' .$last_id. '", "' .$_SESSION['user_name']. '", "' .$_POST['title']. '", "' .$_POST['KieuPhong']. '", "' .$_POST['VeSinh']. '", "' .$_POST['price']. '", "' .$_POST['area']. '", "' .$_POST['electricPrice']. '", "' .$_POST['waterPrice']. '", "' .$_POST['doiTuong']. '", "' .$_POST['tienIch']. '", "' .$_POST['moTa']. '", "' .date('Y-m-d H:i:s'). '")';
+			$sql_insert_gia_phong_tro = 'INSERT INTO gia_phong_tro(IDPhongTro, user_name, TieuDe, KieuPhong, KieuVeSinh, GiaChoThue, DienTich, GiaDien, GiaNuoc, DoiTuong, TienIch, MoTa) VALUE("' .$last_id. '", "' .$_SESSION['user_name']. '", "' .$_POST['title']. '", "' .$_POST['KieuPhong']. '", "' .$_POST['VeSinh']. '", "' .$_POST['price']. '", "' .$_POST['area']. '", "' .$_POST['electricPrice']. '", "' .$_POST['waterPrice']. '", "' .$_POST['doiTuong']. '", "' .$_POST['tienIch']. '", "' .$_POST['moTa']. '")';
 
 			mysqli_query($conn, $sql_insert_gia_phong_tro);
 
