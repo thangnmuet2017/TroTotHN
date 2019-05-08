@@ -133,7 +133,7 @@
 						<option value="Huyện Phúc Thọ">Huyện Phúc Thọ</option>
 						<option value="Huyện Quốc Oai">Huyện Quốc Oai</option>
 						<option value="Huyện Sóc Sơn">Huyện Sóc Sơn</option>
-						<option value="Huyện Sơn Tây">Huyện Sơn Tây</option>
+						<option value="Thị xã Sơn Tây">Thị xã Sơn Tây</option>
 						<option value="Quận Tây Hồ">Quận Tây Hồ</option>
 						<option value="Huyện Thạch Thất">Huyện Thạch Thất</option>
 						<option value="Huyện Thanh Oai">Huyện Thanh Oai</option>
@@ -219,7 +219,7 @@
 			</div>
 
 			<div class="col-xs-12" style="width: 100%; text-align: center;">
-				<button id="upload_room_button" type="submit" class="btn btn-success">Đăng tin</button>
+				<button id="upload_room_button" type="submit" class="btn btn-success" name="DangTin">Đăng tin</button>
 			</div>
 		</form>
 	</div>
