@@ -188,7 +188,7 @@ function setUpXaPhuongFilter(obj) {
 			message.innerHTML = content;
 			break;
 		}
-		case 'Huyện Sơn Tây': {
+		case 'Thị xã Sơn Tây': {
 			var content = "<option value=\"\">Chọn xã, phường</option>";
 			var i=0;
 			for( i=0; i<SonTay.length; i++) {
