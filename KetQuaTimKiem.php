@@ -90,7 +90,7 @@
 												}
 												if(isset($_GET['price_from']) && isset($_GET['price_to'])) {
 													if($_GET['price_from']!="0" || $_GET['price_to']!="5000000") {
-														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '$';
+														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '&';
 													}
 												}
 												echo $url;
@@ -121,7 +121,7 @@
 												}
 												if(isset($_GET['price_from']) && isset($_GET['price_to'])) {
 													if($_GET['price_from']!="0" || $_GET['price_to']!="5000000") {
-														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '$';
+														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '&';
 													}
 												}
 												echo $url;
@@ -167,7 +167,7 @@
 												}
 												if(isset($_GET['price_from']) && isset($_GET['price_to'])) {
 													if($_GET['price_from']!="0" || $_GET['price_to']!="5000000") {
-														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '$';
+														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '&';
 													}
 												}
 												echo $url;
@@ -198,7 +198,7 @@
 												}
 												if(isset($_GET['price_from']) && isset($_GET['price_to'])) {
 													if($_GET['price_from']!="0" || $_GET['price_to']!="5000000") {
-														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '$';
+														$url = $url. 'price_from=' .$_GET['price_from']. '&price_to=' .$_GET['price_to']. '&';
 													}
 												}
 												echo $url;
