@@ -25,7 +25,7 @@
 		}
 	}
 	if(isset($_GET['price_from']) && isset($_GET['price_to'])) {
-		if($_GET['price_from']!="0" || $_GET['price_to']!="5000000") {
+		if($_GET['price_from']!="" || $_GET['price_to']!="") {
 			$sql_select_all_action = $sql_select_all_action.' AND gia_phong_tro.GiaChoThue BETWEEN ' .$_GET['price_from']. ' AND ' .$_GET['price_to'];
 		}
 	}
