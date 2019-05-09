@@ -10,8 +10,8 @@
 		}
 		if (document.getElementById("district_select").value == ""
 			&& document.getElementById("xaPhuongSelect").value == ""
-			&& document.getElementById("price_from").value == "0"
-			&& document.getElementById("price_to").value == "5000000"
+			&& document.getElementById("price_from").value == ""
+			&& document.getElementById("price_to").value == ""
 			&& KieuPhongChecked == false) {
 			return false;
 		}
@@ -82,9 +82,9 @@
 				<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 					<h3 style="color: #33cc66">Chọn khoảng giá</h3>
 					<div class="row col-lg-12" style="margin: 0px; padding: 0px;">
-						<input class="col-lg-4 col-md-4 col-sm-4 col-xs-4 price_filter" type="number" min="0" value="0" id="price_from" name="price_from">
+						<input class="col-lg-4 col-md-4 col-sm-4 col-xs-4 price_filter" type="number" min="0" value="" id="price_from" name="price_from">
 						<p class="col-lg-4 col-md-4 col-sm-4 col-xs-4 text-center" style="color: white;">Đến</p>
-						<input class="col-lg-4 col-md-4 col-sm-4 col-xs-4 price_filter" type="number" min="0" value="5000000" id="price_to" name="price_to">
+						<input class="col-lg-4 col-md-4 col-sm-4 col-xs-4 price_filter" type="number" min="0" value="" id="price_to" name="price_to">
 					</div>
 				</div>
 				<div class="col-xs-12 filter_option" style="width: 100%; text-align: center;">
