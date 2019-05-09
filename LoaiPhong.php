@@ -39,7 +39,7 @@
 	<div class="container">
 		<p id="path">
 			<a href="TrangChu.php" class="link">Trang chủ / </a>
-			<a href="NhaNguyenCan.php" class="link">Nhà nguyên căn</a>
+			<a class = "link"><?php echo $_GET['action']; ?></a>
 		</p>
 	</div>
 
