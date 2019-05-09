@@ -38,7 +38,7 @@
 	<!-- Phần hiển thị đường dẫn các trang -->
 	<div class="container">
 		<p id="path">
-			<a href="TrangChu.php" class="link">Trang chủ / </a>
+			<a href="index.php" class="link">Trang chủ / </a>
 			<a class = "link"><?php echo $_GET['action']; ?></a>
 		</p>
 	</div>
