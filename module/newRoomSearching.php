@@ -32,16 +32,16 @@
 
 	if(isset($_GET['sorting_time'])) { //lấy giá trị (nếu có) của phần sắp xếp phòng trọ theo thời gian và thêm vào câu lệnh sql
 		if($_GET['sorting_time'] == "Mới nhất") {
-			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.ThoiGianDang DESC';
+			$sql_select_all_action = $sql_select_all_action. ' ORDER BY gia_phong_tro.ThoiGianDang DESC';
 		} else if($_GET['sorting_time'] == "Cũ nhất") {
-			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.ThoiGianDang ASC';
+			$sql_select_all_action = $sql_select_all_action. ' ORDER BY gia_phong_tro.ThoiGianDang ASC';
 		}
 	}
 	if(isset($_GET['sorting_price'])) { //Lấy giá trị (nếu có) của phần sắp xếp phòng trọ theo giá và thêm vào câu lệnh sql
 		if($_GET['sorting_price'] == "Rẻ nhất") {
-			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.GiaChoThue ASC';
+			$sql_select_all_action = $sql_select_all_action. ' ORDER BY gia_phong_tro.GiaChoThue ASC';
 		} else if($_GET['sorting_price'] == "Đắt nhất") {
-			$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.GiaChoThue DESC';
+			$sql_select_all_action = $sql_select_all_action. ' ORDER BY gia_phong_tro.GiaChoThue DESC';
 		}
 	}
 
