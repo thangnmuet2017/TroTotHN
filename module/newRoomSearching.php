@@ -1,9 +1,11 @@
 <?php
+	date_default_timezone_set('Asia/Ho_Chi_Minh');
+
 	//kết nối đến CSDL
 	include('./controller/connectToDatabase.php');
 
 	//Câu lệnh sql lấy tất cả các phòng thỏa mãn điều kiện của bộ lọc
-	$sql_select_all_action = 'SELECT gia_phong_tro.IDPhongTro, gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, gia_phong_tro.KieuPhong, DATEDIFF(NOW(), gia_phong_tro.ThoiGianDang) AS ThoiGian, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro';
+	$sql_select_all_action = 'SELECT gia_phong_tro.IDPhongTro, gia_phong_tro.KieuVeSinh, gia_phong_tro.TieuDe, gia_phong_tro.DienTich, gia_phong_tro.GiaChoThue, gia_phong_tro.KieuPhong,gia_phong_tro.ThoiGianDang AS ThoiGian, dia_chi_phong_tro.DiaChi, dia_chi_phong_tro.TenChuTro, dia_chi_phong_tro.Sdt FROM gia_phong_tro, dia_chi_phong_tro WHERE gia_phong_tro.IDPhongTro=dia_chi_phong_tro.IDPhongTro';
 	if(isset($_GET['kieuPhong'])) {
 		if($_GET['kieuPhong'] != "Tất cả") {
 			$sql_select_all_action = $sql_select_all_action.' AND gia_phong_tro.KieuPhong="' .$_GET['kieuPhong']. '"';
@@ -117,7 +119,32 @@
 							<span style="color: green;">Giá: </span>
 							<span><?php echo $row['GiaChoThue']; ?> đồng/tháng</span>
 						</b>
-						<p class="col-xs-12 text-right simple_room_info_line" style="color: gray"><?php echo $row['ThoiGian']; ?> ngày trước</p>
+						<p class="col-xs-12 text-right simple_room_info_line" style="color: gray">
+							<?php 
+								$ThoiGian = $row['ThoiGian'];
+								$now =  date('Y-m-d H:i:s');
+								$diff = strtotime($now) - strtotime($ThoiGian);
+								if($diff < 60) {
+									echo round($diff) ;
+									echo " giây trước";
+								} else if($diff < 60*60) {
+									echo round($diff/60);
+									echo " phút trước";
+								} else if($diff < 60*60*24) {
+									echo round($diff/60/60);
+									echo " giờ trước";
+								} else if($diff < 60*60*24*30) {
+									echo round($diff/60/60/24);
+									echo " ngày trước";
+								} else if($diff < 60*60*24*30*12) {
+									echo round($diff/60/60/24/30);
+									echo " tháng trước";
+								} else {
+									echo round($diff/60/60/24/30/12);
+									echo " năm trước";
+								}
+							?> 
+						</p>
 					</div>
 				</div>
 			</div>
