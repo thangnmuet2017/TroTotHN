@@ -109,6 +109,58 @@ $("#upload_room_button").click( function() {
 	} 
 });
 
+// Hàm kiểm tra tất cả các thông tin đầu vào đã đúng chưa
+
+function validateForm() {
+			if(document.getElementById("input_title").value == ""
+				|| document.getElementById("input_room_price").value == ""
+				|| document.getElementById("input_room_area").value == ""
+				|| document.getElementById("quan_huyen_select").value == ""
+				|| document.getElementById("xaPhuongSelect").value == ""
+				|| document.getElementById("input_exacly_address").value == ""
+				|| document.getElementById("input_phone_number").value == ""
+				|| document.getElementById("input_room_describle").value == "") {
+				return false;
+			}
+			var checkboxKieuPhong = document.getElementsByName("KieuPhong");
+			var KieuPhongChecked = false;
+			for (var i = 0; i < checkboxKieuPhong.length; i++){
+				if (checkboxKieuPhong[i].checked === true){
+					KieuPhongChecked = true;
+				}
+			}
+			if (KieuPhongChecked == false) {
+				return false;
+			}
+
+			var checkboxKieuVeSinh = document.getElementsByName("VeSinh");
+			var KieuVeSinhChecked = false;
+			for (var i = 0; i < checkboxKieuVeSinh.length; i++){
+				if (checkboxKieuVeSinh[i].checked === true){
+					KieuVeSinhChecked = true;
+				}
+			}
+			if(KieuVeSinhChecked == false) {
+				return false;
+			}
+
+			//Kiểm tra điều kiện của file submit
+			var file = document.getElementById("upload_images");
+			if('files' in file) {
+				if(file.files.length==0) {
+					return false;
+				} else {
+					for(var i=0; i<file.files.length; i++) {
+						if('type' in file) {
+							if(file.files[i].type != "image/jpg" && file.files[i].type != "image/jpeg" && file.files[i].type != "image/png" && file.files[i].type != "image/gif") {
+								return false;
+							}
+						} 
+					}
+				}
+			}
+		}
+
 /*Hàm hiển thị hình ảnh trước khi đăng tin*/
 function previewImages() {
 	var fileInput = document.getElementById('upload_images');
