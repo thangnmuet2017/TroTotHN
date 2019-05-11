@@ -14,10 +14,15 @@
 				KieuVeSinhChecked = true;
 			}
 		}
+		var truePrice = false;
+		if( document.getElementById("price_from").value != ""
+			&& document.getElementById("price_to").value != "") {
+			truePrice = true;
+
+		}
 		if (document.getElementById("district_select").value == ""
 			&& document.getElementById("xaPhuongSelect").value == ""
-			&& document.getElementById("price_from").value == ""
-			&& document.getElementById("price_to").value == ""
+			&& truePrice == false
 			&& KieuPhongChecked == false
 			&& KieuVeSinhChecked == false) {
 			return false;
