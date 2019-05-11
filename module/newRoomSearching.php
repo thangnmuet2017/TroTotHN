@@ -33,7 +33,7 @@
 	}
 
 	if(!isset($_GET['sorting_time']) && !isset($_GET['sorting_price'])) {
-		$sql_select_all_action = $sql_select_all_action. 'ORDER BY gia_phong_tro.ThoiGianDang DESC';
+		$sql_select_all_action = $sql_select_all_action. ' ORDER BY gia_phong_tro.ThoiGianDang DESC';
 	}
 
 	if(isset($_GET['sorting_time'])) { //lấy giá trị (nếu có) của phần sắp xếp phòng trọ theo thời gian và thêm vào câu lệnh sql
