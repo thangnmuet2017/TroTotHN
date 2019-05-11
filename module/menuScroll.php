@@ -24,8 +24,23 @@
 					<li><a href="./LoaiPhong.php?action=Ở+ghép">
 						<b>Ở GHÉP</b>
 					</a></li>
-					<li><a href="DangTinNhanh.php">
+					<li><a onclick = "checkLogIn()" href="javascript: ;">
 						<b>ĐĂNG TIN NHANH</b>
+						<script>
+					        function checkLogIn(){
+					            <?php 
+					            	if(isset($_SESSION['user_name'])) { ?>
+					            		location.assign("https://trotothn.000webhostapp.com/DangTinNhanh.php");
+					          <?php } else { ?>
+					          			$("#login_background").css("display", "block");
+										$("#logIn_area").css("display", "block");
+										$("#signIn_area").css("display", "none");
+										$(".logIn_menu_button").css("color", "green");
+										$(".signIn_menu_button").css("color", "black");
+					          <?php }
+					            ?>
+					        }
+					    </script>
 					</a></li>
 
 				</ul>
